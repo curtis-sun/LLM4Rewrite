@@ -1,0 +1,70 @@
+{"name": "AGGREGATE_ANY_PULL_UP_CONSTANTS", "type": "AggregateProjectPullUpConstantsRule", "description": "More general form of AGGREGATE_PROJECT_PULL_UP_CONSTANTS that matches any relational expression."}
+{"name": "AGGREGATE_CASE_TO_FILTER", "type": "AggregateCaseToFilterRule", "description": "Rule that converts CASE-style filtered aggregates into true filtered aggregates."}
+{"name": "AGGREGATE_EXPAND_DISTINCT_AGGREGATES", "type": "AggregateExpandDistinctAggregatesRule", "description": "Rule that expands distinct aggregates (such as COUNT(DISTINCT x)) from a Aggregate."}
+{"name": "AGGREGATE_EXPAND_DISTINCT_AGGREGATES_TO_JOIN", "type": "AggregateExpandDistinctAggregatesRule", "description": "As AGGREGATE_EXPAND_DISTINCT_AGGREGATES but generates a Join."}
+{"name": "AGGREGATE_FILTER_TRANSPOSE", "type": "AggregateFilterTransposeRule", "description": "Rule that matches an Aggregate on a Filter and transposes them, pushing the aggregate below the filter."}
+{"name": "AGGREGATE_JOIN_JOIN_REMOVE", "type": "AggregateJoinJoinRemoveRule", "description": "Rule that matches an Aggregate on a Join and removes the left input of the join provided that the left input is also a left join if possible."}
+{"name": "AGGREGATE_JOIN_REMOVE", "type": "AggregateJoinRemoveRule", "description": "Rule that matches an Aggregate on a Join and removes the join provided that the join is a left join or right join and it computes no aggregate functions or all the aggregate calls have distinct."}
+{"name": "AGGREGATE_JOIN_TRANSPOSE_EXTENDED", "type": "AggregateJoinTransposeRule", "description": "As AGGREGATE_JOIN_TRANSPOSE, but extended to push down aggregate functions."}
+{"name": "AGGREGATE_MERGE", "type": "AggregateMergeRule", "description": "Rule that matches an Aggregate on an Aggregate, and merges into a single Aggregate if the top aggregate's group key is a subset of the lower aggregate's group key, and the aggregates are expansions of rollups."}
+{"name": "AGGREGATE_PROJECT_MERGE", "type": "AggregateProjectMergeRule", "description": "Rule that recognizes an Aggregate on top of a Project and if possible aggregates through the Project or removes the Project."}
+{"name": "AGGREGATE_REDUCE_FUNCTIONS", "type": "AggregateReduceFunctionsRule", "description": "Rule that reduces aggregate functions in an Aggregate to simpler forms."}
+{"name": "AGGREGATE_REMOVE", "type": "AggregateRemoveRule", "description": "Rule that removes an Aggregate if it computes no aggregate functions (that is, it is implementing SELECT DISTINCT), or all the aggregate functions are splittable, and the underlying relational expression is already distinct."}
+{"name": "AGGREGATE_UNION_AGGREGATE_FIRST", "type": "AggregateUnionAggregateRule", "description": "As AGGREGATE_UNION_AGGREGATE, but matches an Aggregate only as the left input of the Union."}
+{"name": "AGGREGATE_UNION_AGGREGATE_SECOND", "type": "AggregateUnionAggregateRule", "description": "As AGGREGATE_UNION_AGGREGATE, but matches an Aggregate only as the right input of the Union."}
+{"name": "AGGREGATE_UNION_TRANSPOSE", "type": "AggregateUnionTransposeRule", "description": "Rule that pushes an Aggregate past a non-distinct Union."}
+{"name": "AGGREGATE_VALUES", "type": "AggregateValuesRule", "description": "Rule that applies an Aggregate to a Values (currently just an empty Values)."}
+{"name": "FILTER_AGGREGATE_TRANSPOSE", "type": "FilterAggregateTransposeRule", "description": "Rule that pushes a Filter past an Aggregate."}
+{"name": "FILTER_CORRELATE", "type": "FilterCorrelateRule", "description": "Rule that pushes a Filter above a Correlate into the inputs of the Correlate."}
+{"name": "FILTER_EXPAND_IS_NOT_DISTINCT_FROM", "type": "FilterRemoveIsNotDistinctFromRule", "description": "Rule that replaces IS NOT DISTINCT FROM in a Filter with logically equivalent operations."}
+{"name": "FILTER_INTO_JOIN", "type": "FilterJoinRule.FilterIntoJoinRule", "description": "Rule that tries to push filter expressions into a join condition and into the inputs of the join."}
+{"name": "FILTER_MERGE", "type": "FilterMergeRule", "description": "Rule that combines two LogicalFilters."}
+{"name": "FILTER_PROJECT_TRANSPOSE", "type": "FilterProjectTransposeRule", "description": "The default instance of FilterProjectTransposeRule."}
+{"name": "FILTER_REDUCE_EXPRESSIONS", "type": "ReduceExpressionsRule.FilterReduceExpressionsRule", "description": "Rule that reduces constants inside a LogicalFilter."}
+{"name": "FILTER_SET_OP_TRANSPOSE", "type": "FilterSetOpTransposeRule", "description": "Rule that pushes a Filter past a SetOp."}
+{"name": "FILTER_SUB_QUERY_TO_CORRELATE", "type": "SubQueryRemoveRule", "description": "Rule that converts a sub-queries from filter expressions into Correlate instances."}
+{"name": "FILTER_TABLE_FUNCTION_TRANSPOSE", "type": "FilterTableFunctionTransposeRule", "description": "Rule that pushes a LogicalFilter past a LogicalTableFunctionScan."}
+{"name": "FILTER_VALUES_MERGE", "type": "ValuesReduceRule", "description": "Rule that merges a Filter onto an underlying LogicalValues, resulting in a Values with potentially fewer rows."}
+{"name": "INTERSECT_TO_DISTINCT", "type": "IntersectToDistinctRule", "description": "Rule that translates a distinct Intersect into a group of operators composed of Union, Aggregate, etc."}
+{"name": "JOIN_ADD_REDUNDANT_SEMI_JOIN", "type": "JoinAddRedundantSemiJoinRule", "description": "Rule to add a semi-join into a Join."}
+{"name": "JOIN_CONDITION_PUSH", "type": "FilterJoinRule.JoinConditionPushRule", "description": "Rule that pushes predicates in a Join into the inputs to the join."}
+{"name": "JOIN_DERIVE_IS_NOT_NULL_FILTER_RULE", "type": "JoinDeriveIsNotNullFilterRule", "description": "Rule that derives IS NOT NULL predicates from a inner Join and creates Filters with those predicates as new inputs of the Join."}
+{"name": "JOIN_EXTRACT_FILTER", "type": "JoinExtractFilterRule", "description": "Rule to convert an inner join to a filter on top of a cartesian inner join."}
+{"name": "JOIN_LEFT_UNION_TRANSPOSE", "type": "JoinUnionTransposeRule", "description": "Rule that pushes a Join past a non-distinct Union as its left input."}
+{"name": "JOIN_PROJECT_BOTH_TRANSPOSE_INCLUDE_OUTER", "type": "JoinProjectTransposeRule", "description": "As JOIN_PROJECT_BOTH_TRANSPOSE but match outer as well as inner join."}
+{"name": "JOIN_PROJECT_LEFT_TRANSPOSE_INCLUDE_OUTER", "type": "JoinProjectTransposeRule", "description": "As JOIN_PROJECT_LEFT_TRANSPOSE but match outer as well as inner join."}
+{"name": "JOIN_PROJECT_RIGHT_TRANSPOSE_INCLUDE_OUTER", "type": "JoinProjectTransposeRule", "description": "As JOIN_PROJECT_RIGHT_TRANSPOSE but match outer as well as inner join."}
+{"name": "JOIN_PUSH_EXPRESSIONS", "type": "JoinPushExpressionsRule", "description": "Rule that matches a Join and pushes down expressions on either side of \"equal\" conditions."}
+{"name": "JOIN_PUSH_TRANSITIVE_PREDICATES", "type": "JoinPushTransitivePredicatesRule", "description": "Rule that infers predicates from on a Join and creates Filters if those predicates can be pushed to its inputs."}
+{"name": "JOIN_REDUCE_EXPRESSIONS", "type": "ReduceExpressionsRule.JoinReduceExpressionsRule", "description": "Rule that reduces constants inside a Join."}
+{"name": "JOIN_RIGHT_UNION_TRANSPOSE", "type": "JoinUnionTransposeRule", "description": "Rule that pushes a Join past a non-distinct Union as its right input."}
+{"name": "JOIN_SUB_QUERY_TO_CORRELATE", "type": "SubQueryRemoveRule", "description": "Rule that converts sub-queries from join expressions into Correlate instances."}
+{"name": "JOIN_TO_CORRELATE", "type": "JoinToCorrelateRule", "description": "Rule that converts a LogicalJoin into a LogicalCorrelate."}
+{"name": "PROJECT_AGGREGATE_MERGE", "type": "ProjectAggregateMergeRule", "description": "Rule that matches a Project on an Aggregate, projecting away aggregate calls that are not used."}
+{"name": "PROJECT_CORRELATE_TRANSPOSE", "type": "ProjectCorrelateTransposeRule", "description": "Rule that matches a Project on a Correlate and pushes the projections to the Correlate's left and right inputs."}
+{"name": "PROJECT_FILTER_TRANSPOSE", "type": "ProjectFilterTransposeRule", "description": "Rule that pushes a Project past a Filter."}
+{"name": "PROJECT_FILTER_VALUES_MERGE", "type": "ValuesReduceRule", "description": "Rule that merges a Project on top of a Filter onto an underlying LogicalValues, resulting in a Values with different columns and potentially fewer rows."}
+{"name": "PROJECT_JOIN_JOIN_REMOVE", "type": "ProjectJoinJoinRemoveRule", "description": "Rule that matches an Project on a Join and removes the left input of the join provided that the left input is also a left join."}
+{"name": "PROJECT_JOIN_REMOVE", "type": "ProjectJoinRemoveRule", "description": "Rule that matches an Project on a Join and removes the join provided that the join is a left join or right join and the join keys are unique."}
+{"name": "PROJECT_JOIN_TRANSPOSE", "type": "ProjectJoinTransposeRule", "description": "Rule that pushes a LogicalProject past a LogicalJoin by splitting the projection into a projection on top of each child of the join."}
+{"name": "PROJECT_MERGE", "type": "ProjectMergeRule", "description": "Rule that merges a Project into another Project, provided the projects are not projecting identical sets of input references."}
+{"name": "PROJECT_REDUCE_EXPRESSIONS", "type": "ReduceExpressionsRule.ProjectReduceExpressionsRule", "description": "Rule that reduces constants inside a LogicalProject."}
+{"name": "PROJECT_REMOVE", "type": "ProjectRemoveRule", "description": "Rule that, given a Project node that merely returns its input, converts the node into its input."}
+{"name": "PROJECT_SET_OP_TRANSPOSE", "type": "ProjectSetOpTransposeRule", "description": "Rule that pushes a LogicalProject past a SetOp."}
+{"name": "PROJECT_SUB_QUERY_TO_CORRELATE", "type": "SubQueryRemoveRule", "description": "Rule that converts sub-queries from project expressions into Correlate instances."}
+{"name": "PROJECT_TO_LOGICAL_PROJECT_AND_WINDOW", "type": "ProjectToWindowRule.ProjectToLogicalProjectAndWindowRule", "description": "Rule that transforms a Project into a mixture of LogicalProject and LogicalWindow."}
+{"name": "PROJECT_VALUES_MERGE", "type": "ValuesReduceRule", "description": "Rule that merges a Project onto an underlying LogicalValues, resulting in a Values with different columns."}
+{"name": "PROJECT_WINDOW_TRANSPOSE", "type": "ProjectWindowTransposeRule", "description": "Rule that pushes a LogicalProject past a LogicalWindow."}
+{"name": "SEMI_JOIN_FILTER_TRANSPOSE", "type": "SemiJoinFilterTransposeRule", "description": "Rule that pushes a semi-join down in a tree past a Filter."}
+{"name": "SEMI_JOIN_JOIN_TRANSPOSE", "type": "SemiJoinJoinTransposeRule", "description": "Rule that pushes a semi-join down in a tree past a Join."}
+{"name": "SEMI_JOIN_PROJECT_TRANSPOSE", "type": "SemiJoinProjectTransposeRule", "description": "Rule that pushes a semi-join down in a tree past a Project."}
+{"name": "SORT_JOIN_TRANSPOSE", "type": "SortJoinTransposeRule", "description": "Rule that pushes a Sort past a Join."}
+{"name": "SORT_PROJECT_TRANSPOSE", "type": "SortProjectTransposeRule", "description": "Rule that pushes a Sort past a Project."}
+{"name": "SORT_REMOVE", "type": "SortRemoveRule", "description": "Rule that removes a Sort if its input is already sorted."}
+{"name": "SORT_REMOVE_CONSTANT_KEYS", "type": "SortRemoveConstantKeysRule", "description": "Rule that removes keys from a Sort if those keys are known to be constant, or removes the entire Sort if all keys are constant."}
+{"name": "SORT_UNION_TRANSPOSE", "type": "SortUnionTransposeRule", "description": "Rule that pushes a Sort past a Union."}
+{"name": "SORT_UNION_TRANSPOSE_MATCH_NULL_FETCH", "type": "SortUnionTransposeRule", "description": "As SORT_UNION_TRANSPOSE, but for a Union implementation that preserves the ordering of its inputs."}
+{"name": "UNION_PULL_UP_CONSTANTS", "type": "UnionPullUpConstantsRule", "description": "Rule that pulls up constants through a Union operator."}
+{"name": "UNION_REMOVE", "type": "UnionEliminatorRule", "description": "Rule that removes a Union if it has only one input."}
+{"name": "UNION_TO_DISTINCT", "type": "UnionToDistinctRule", "description": "Rule that translates a distinct Union (all = false) into an Aggregate on top of a non-distinct Union (all = true)."}
+{"name": "WINDOW_REDUCE_EXPRESSIONS", "type": "ReduceExpressionsRule.WindowReduceExpressionsRule", "description": "Rule that reduces constants inside a LogicalWindow."}
