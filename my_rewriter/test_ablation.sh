@@ -9,14 +9,14 @@ python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation
 python3 test.py --database calcite10 --logdir logs_ablation/structure --index structure
 python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation/structure
 # Test different values of retrieval top-k.
-python3 test.py --database calcite10 --logdir logs_topk/1 --topk 1
-python3 analyze.py --compute_latency --database calcite10 --logdir logs_topk/1
-python3 test.py --database calcite10 --logdir logs_topk/2 --topk 2
-python3 analyze.py --compute_latency --database calcite10 --logdir logs_topk/2
-python3 test.py --database calcite10 --logdir logs_topk/5 --topk 5
-python3 analyze.py --compute_latency --database calcite10 --logdir logs_topk/5
-python3 test.py --database calcite10 --logdir logs_topk/20 --topk 20
-python3 analyze.py --compute_latency --database calcite10 --logdir logs_topk/20
+python3 test.py --database calcite10 --logdir logs_ablation/logs_topk/1 --topk 1
+python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation/logs_topk/1
+python3 test.py --database calcite10 --logdir logs_ablation/logs_topk/2 --topk 2
+python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation/logs_topk/2
+python3 test.py --database calcite10 --logdir logs_ablation/logs_topk/5 --topk 5
+python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation/logs_topk/5
+python3 test.py --database calcite10 --logdir logs_ablation/logs_topk/20 --topk 20
+python3 analyze.py --compute_latency --database calcite10 --logdir logs_ablation/logs_topk/20
 # Test one-step LLM rewrite.
 cp -R logs/calcite/ logs_ablation/no_steps/calcite
 python3 adjust_no_steps.py --database calcite10 --logdir logs_ablation/no_steps
