@@ -104,8 +104,8 @@ def analyze(query: str, name: str) -> dict:
 
     assert len(rewrite_res) == 1
     
-    llm_time = (llm_end - llm_start).seconds
-    rewrite_time = sum([res['time'] for res in rewrite_res]) / 1000
+    llm_time = (llm_end - llm_start).seconds * 1000
+    rewrite_time = sum([res['time'] for res in rewrite_res])
 
     rewrite_obj = {'template': name, 'time': {'llm': llm_time, 'rewrite': rewrite_time}, 'rewrites': rewrite_res, 'input_sql': query, 'input_cost': input_cost}
     if args.compute_latency:
@@ -189,7 +189,7 @@ logging.info(f'Average Rewrite Time: {average_rewrite}')
 logging.info(f'Average Total Time: {average_llm + average_rewrite}')
 
 if args.large:
-    overall_latencies = [(t['time']['llm'] + t['time']['rewrite']) * 1000 + o for t, o in zip(template_rewrites, output_latencies)]
+    overall_latencies = [t['time']['llm'] + t['time']['rewrite'] + o for t, o in zip(template_rewrites, output_latencies)]
 
     average_overall_latency = sum(overall_latencies) / len(overall_latencies)
     logging.info(f'Average Overall: {average_overall_latency}')

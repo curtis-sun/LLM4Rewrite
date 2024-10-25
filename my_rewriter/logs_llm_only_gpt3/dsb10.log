@@ -1,0 +1,21 @@
+15:35:22,828 root INFO Improvements:
++------------+--------------------+--------------------+----------------------------------------------------------------------------------+
+|  Template  |       Input        |       Output       |                                      Rules                                       |
++------------+--------------------+--------------------+----------------------------------------------------------------------------------+
+| query081_0 |      300000.0      | 2803.4519999999998 |           ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_JOIN_TRANSPOSE']            |
+| query101_1 | 1933.7713333333334 | 1858.8486666666668 |                          ['FILTER_REDUCE_EXPRESSIONS']                           |
+| query010_0 | 13804.551666666666 |     11470.168      | ['FILTER_SUB_QUERY_TO_CORRELATE', 'JOIN_TO_CORRELATE', 'PROJECT_JOIN_TRANSPOSE'] |
+| query010_1 |     15820.572      | 12846.730333333333 |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
++------------+--------------------+--------------------+----------------------------------------------------------------------------------+
+15:35:22,829 root INFO Improved 4 out of 76 queries
+15:35:22,829 root INFO Average: 37749.868372807
+15:35:22,829 root INFO Median: 5361.637333333333
+15:35:22,829 root INFO 90th Percentile: 300000.0
+15:35:22,830 root INFO 95th Percentile: 300000.0
+15:35:22,830 root INFO Average Input: 37757.20457456139
+15:35:22,830 root INFO Median Input: 5280.537333333334
+15:35:22,830 root INFO 90th Percentile Input: 300000.0
+15:35:22,830 root INFO 95th Percentile Input: 300000.0
+15:35:22,830 root INFO Average LLM Time: 4605.263157894737
+15:35:22,830 root INFO Average Rewrite Time: 128.64473684210526
+15:35:22,830 root INFO Average Total Time: 4733.907894736842

@@ -117,15 +117,14 @@ def _analyze(name: str, input_latency: float) -> dict:
     else:
         assert len(rewrite_res) == 2
     
-    retrieval_time = (retrieval_end - retrieval_start).seconds
-    arrange_time = ((arrange_first_end - retrieval_end).seconds if arrange_first_end is not None else 0) + (arrange_end - arrange_second_start).seconds + (rearrange_time if len(rewrite_res) == 2 else 0)
-    rewrite_time = sum([res['time'] for res in rewrite_res]) / 1000
+    retrieval_time = (retrieval_end - retrieval_start).seconds * 1000
+    arrange_time = (((arrange_first_end - retrieval_end).seconds if arrange_first_end is not None else 0) + (arrange_end - arrange_second_start).seconds + (rearrange_time if len(rewrite_res) == 2 else 0)) * 1000
+    rewrite_time = sum([res['time'] for res in rewrite_res])
 
     rewrite_obj = {'template': name, 'time': {'retrieval': retrieval_time, 'arrange': arrange_time, 'rewrite': rewrite_time}, 'rewrites': rewrite_res}
     return rewrite_obj
 
-def analyze(query: str, name: str) -> list[dict]:
-    template_rewrites = []
+def analyze(query: str, name: str) -> dict:
     db = Database(pg_args)
     input_cost = db.cost_estimation(query)
     if input_cost == -1:
@@ -147,19 +146,19 @@ def analyze(query: str, name: str) -> list[dict]:
     final_res['time']['rewrite'] += rewrite_obj['time']['rewrite']
     best_idx = sorted([(i, r['output_cost']) for i, r in enumerate(final_res['rewrites'])], key=lambda x: x[1])[0][0]
     final_res['best_index'] = best_idx
-    template_rewrites.append(final_res)
-    return template_rewrites
+    return final_res
 
 schema_path = os.path.join('..', DATASET, 'create_tables.sql')
 schema = open(schema_path, 'r').read()
 
-analyze_log_filename = f'{args.logdir}/{args.database}.log'
+analyze_log_filename = f'{args.logdir}/{args.database}.log' if not args.no_reflection else f'{args.logdir}/{args.database}_no_reflection.log'
 logging.basicConfig(filename=analyze_log_filename,
                     filemode='a',
                     format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                     datefmt='%H:%M:%S',
                     level=logging.DEBUG)
 
+template_rewrites = []
 if DATASET == 'calcite':
     queries_path = os.path.join('..', DATASET, f'{DATASET}.jsonl')
     with open(queries_path, 'r') as fin:
@@ -168,7 +167,8 @@ if DATASET == 'calcite':
             query = obj['input_sql']
             name = sorted([x['name'] for x in obj['rewrites']])[0]
 
-            template_rewrites = analyze(query, name)
+            rewrite_obj = analyze(query, name)
+            template_rewrites.append(rewrite_obj)
 else:
     queries_path = os.path.join('..', DATASET, 'queries')
     query_templates = os.listdir(queries_path)
@@ -182,7 +182,8 @@ else:
             for j, query in enumerate(queries):
                 name = f'{template}_{idx}' if len(queries) == 1 else f'{template}_{idx}_{j}'
 
-                template_rewrites = analyze(query, name)
+                rewrite_obj = analyze(query, name)
+                template_rewrites.append(rewrite_obj)
 
 input_attr = 'input_latency' if args.compute_latency else 'input_cost'
 output_attr = 'output_latency' if args.compute_latency else 'output_cost'
@@ -224,7 +225,7 @@ logging.info(f'Average Rewrite Time: {average_rewrite}')
 logging.info(f'Average Total Time: {average_retrieval + average_arrange + average_rewrite}')
 
 if args.large:
-    overall_latencies = [(t['time']['retrieval'] + t['time']['arrange'] + t['time']['rewrite']) * 1000 + o for t, o in zip(template_rewrites, output_latencies)]
+    overall_latencies = [t['time']['retrieval'] + t['time']['arrange'] + t['time']['rewrite'] + o for t, o in zip(template_rewrites, output_latencies)]
 
     average_overall_latency = sum(overall_latencies) / len(overall_latencies)
     logging.info(f'Average Overall: {average_overall_latency}')

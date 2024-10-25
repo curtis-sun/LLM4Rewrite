@@ -1,0 +1,36 @@
+15:37:00,943 root INFO Improvements:
++------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
+|                    Template                    |        Input         |        Output        |                                 Rules                                  |
++------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
+|                testEmptyProject                | 0.009666666666666665 |        0.001         |                        ['FILTER_VALUES_MERGE']                         |
+|            testDistinctWithGrouping            |  38882.52333333333   |  4424.276666666668   |                ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                |
+|            testWhereNotInCorrelated            |       300000.0       |  18402.373666666666  |                   ['FILTER_SUB_QUERY_TO_CORRELATE']                    |
+|             testWhereInCorrelated              |       300000.0       |  7274.581000000001   |                   ['FILTER_SUB_QUERY_TO_CORRELATE']                    |
+|              testWhereOrSubQuery               |       300000.0       |      36363.499       |                   ['FILTER_SUB_QUERY_TO_CORRELATE']                    |
+|       testReduceConstantsNegatedInverted       | 0.011666666666666665 |        0.001         |                     ['FILTER_REDUCE_EXPRESSIONS']                      |
+|              testDecorrelateTwoIn              |       300000.0       |  8142.649333333334   |                   ['FILTER_SUB_QUERY_TO_CORRELATE']                    |
+|              testAggregateRemove2              |  57782.67266666666   |       5043.274       |                                   []                                   |
+|         testWhereAnyCorrelatedInSelect         |       300000.0       |  15334.412666666665  |                   ['FILTER_SUB_QUERY_TO_CORRELATE']                    |
+|           testReduceConstantsIsNull            | 0.006333333333333333 |        0.001         |                     ['FILTER_REDUCE_EXPRESSIONS']                      |
+|               testIsNullPushDown               |      68552.787       |        0.001         |                     ['FILTER_REDUCE_EXPRESSIONS']                      |
+|  testMaxReuseDistinctAttrWithMixedOptionality  |  37907.621666666666  |  6460.465333333334   |                ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                |
+|            testReduceValuesToEmpty             |         0.01         |        0.001         |                        ['FILTER_VALUES_MERGE']                         |
+|     testPushFilterPastAggWithGroupingSets2     |  2335.8283333333334  |  24.33966666666667   |                     ['FILTER_AGGREGATE_TRANSPOSE']                     |
+| testBitOrReuseDistinctAttrWithMixedOptionality |      37764.039       |  6708.388333333333   |                ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                |
+|           testPullConstantIntoFilter           |  1368.8746666666666  | 0.009666666666666665 |            ['PROJECT_REMOVE', 'FILTER_REDUCE_EXPRESSIONS']             |
+|             testEmptySortLimitZero             |  70.32166666666667   |        0.001         |                                   []                                   |
+|          testExpandProjectInNullable           |       300000.0       |       8926.67        |                                   []                                   |
+|  testMinReuseDistinctAttrWithMixedOptionality  |  37832.59733333333   |  6542.531333333333   | ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES', 'AGGREGATE_REDUCE_FUNCTIONS'] |
++------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
+15:37:00,943 root INFO Improved 19 out of 44 queries
+15:37:00,943 root INFO Average: 61796.35943939393
+15:37:00,943 root INFO Median: 14152.328333333333
+15:37:00,943 root INFO 90th Percentile: 300000.0
+15:37:00,943 root INFO 95th Percentile: 300000.0
+15:37:00,943 root INFO Average Input: 106306.50350757573
+15:37:00,943 root INFO Median Input: 37907.621666666666
+15:37:00,943 root INFO 90th Percentile Input: 300000.0
+15:37:00,943 root INFO 95th Percentile Input: 300000.0
+15:37:00,943 root INFO Average LLM Time: 9318.181818181818
+15:37:00,943 root INFO Average Rewrite Time: 92.93181818181819
+15:37:00,943 root INFO Average Total Time: 9411.113636363636

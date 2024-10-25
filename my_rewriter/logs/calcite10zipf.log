@@ -1,0 +1,58 @@
+15:36:47,187 root INFO Improvements:
++-----------------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
+|                          Template                         |        Input         |        Output        |                                    Rules                                    |
++-----------------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
+|                      testEmptyProject                     | 0.009666666666666665 |        0.001         |                           ['FILTER_VALUES_MERGE']                           |
+|                testEmptyFilterProjectUnion                | 0.006000000000000001 |        0.001         |     ['PROJECT_REMOVE', 'FILTER_SET_OP_TRANSPOSE', 'FILTER_VALUES_MERGE']    |
+| testNotPushFilterPastWindowWhenPredicateNotOnPartitionKey |  2095.0826666666667  |  2093.9303333333332  |         ['PROJECT_REMOVE', 'PROJECT_TO_LOGICAL_PROJECT_AND_WINDOW']         |
+|                  testDecorrelateTwoExists                 |       300000.0       |      41286.521       |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|                       testEmptyMinus                      |        0.008         |        0.001         |               ['FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REMOVE']               |
+|                    testIsNullPushDown2                    |  28891.119333333336  |        0.001         |               ['PROJECT_REMOVE', 'FILTER_REDUCE_EXPRESSIONS']               |
+|                  testDistinctWithGrouping                 |  38882.52333333333   |  4398.034666666667   |     ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES', 'AGGREGATE_PROJECT_MERGE']     |
+|                  testWhereNotInCorrelated                 |       300000.0       |  18079.924333333332  |            ['FILTER_SUB_QUERY_TO_CORRELATE', 'JOIN_TO_CORRELATE']           |
+|                  testSelectAnyCorrelated                  |       300000.0       |  14946.666000000003  |                      ['PROJECT_SUB_QUERY_TO_CORRELATE']                     |
+|                   testWhereInCorrelated                   |       300000.0       |  7274.581000000001   |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|                 testJoinConditionPushdown6                |  14152.328333333333  |       1677.07        |                           ['JOIN_CONDITION_PUSH']                           |
+|                    testWhereOrSubQuery                    |       300000.0       |      36363.499       |             ['PROJECT_REMOVE', 'FILTER_SUB_QUERY_TO_CORRELATE']             |
+|                          testSome                         |       300000.0       |  13469.597999999998  |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|           testPushAggregateFunctionsThroughJoin           |  203320.30233333333  |       8323.719       |       ['AGGREGATE_PROJECT_MERGE', 'AGGREGATE_JOIN_TRANSPOSE_EXTENDED']      |
+|             testReduceConstantsNegatedInverted            | 0.011666666666666665 |        0.001         |                        ['FILTER_REDUCE_EXPRESSIONS']                        |
+|                    testDecorrelateTwoIn                   |       300000.0       |  8142.649333333334   |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|                    testAggregateRemove1                   |  70269.61133333335   |       5265.22        |                             ['AGGREGATE_REMOVE']                            |
+|                    testAggregateRemove2                   |  57782.67266666666   |       5043.274       |                                      []                                     |
+|                    testAggregateRemove3                   |  57411.26133333333   |  4962.533333333333   |       ['AGGREGATE_PROJECT_MERGE', 'AGGREGATE_REMOVE', 'PROJECT_MERGE']      |
+|               testWhereAnyCorrelatedInSelect              |       300000.0       |  15334.412666666665  |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|                 testReduceConstantsIsNull                 | 0.006333333333333333 |        0.001         |                        ['FILTER_REDUCE_EXPRESSIONS']                        |
+|                     testIsNullPushDown                    |      68552.787       |        0.001         |               ['PROJECT_REMOVE', 'FILTER_REDUCE_EXPRESSIONS']               |
+|        testMaxReuseDistinctAttrWithMixedOptionality       |  37907.621666666666  |  6460.465333333334   |                   ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                  |
+|           testSumAndDistinctSumWithExpandSumType          |      20168.214       |  4077.789666666666   | ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES_TO_JOIN', 'AGGREGATE_PROJECT_MERGE'] |
+|                    testAggregateMerge1                    |  126678.81666666667  |  8025.330666666666   |                ['AGGREGATE_PROJECT_MERGE', 'AGGREGATE_MERGE']               |
+|                  testReduceValuesToEmpty                  |         0.01         |        0.001         |                           ['FILTER_VALUES_MERGE']                           |
+|                   testAggregateMergeSum0                  |  18043.576666666664  |  17959.263666666666  |            ['AGGREGATE_PROJECT_MERGE', 'PROJECT_AGGREGATE_MERGE']           |
+|            testPushAggregateThroughOuterJoin14            |       300000.0       |  11994.167000000001  |       ['AGGREGATE_PROJECT_MERGE', 'AGGREGATE_JOIN_TRANSPOSE_EXTENDED']      |
+|           testPushFilterPastAggWithGroupingSets2          |  2335.8283333333334  |  24.33966666666667   |               ['FILTER_AGGREGATE_TRANSPOSE', 'PROJECT_REMOVE']              |
+|       testBitOrReuseDistinctAttrWithMixedOptionality      |      37764.039       |  6708.388333333333   |                   ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                  |
+|            testExistsWithAtLeastOneRowSubQuery            |       300000.0       |  29.046999999999997  |                      ['FILTER_SUB_QUERY_TO_CORRELATE']                      |
+|                testAnyInProjectNonNullable                |  20040.899666666664  |  2607.5986666666668  |                      ['PROJECT_SUB_QUERY_TO_CORRELATE']                     |
+|                  testAggregateJoinRemove5                 |      56063.577       |  549.1766666666667   |             ['AGGREGATE_PROJECT_MERGE', 'AGGREGATE_JOIN_REMOVE']            |
+|                 testSelectNotInCorrelated                 |       300000.0       |  34824.41433333333   |           ['PROJECT_SUB_QUERY_TO_CORRELATE', 'JOIN_TO_CORRELATE']           |
+|             testDistinctCountWithExpandSumType            |  20148.195000000003  |  4038.058333333333   |               ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES_TO_JOIN']              |
+|                 testPullConstantIntoFilter                |  1368.8746666666666  | 0.009666666666666665 |               ['FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REMOVE']               |
+|                   testEmptySortLimitZero                  |  70.32166666666667   |        0.001         |                          ['SORT_PROJECT_TRANSPOSE']                         |
+|                  testRemoveDistinctOnAgg                  |  135803.70433333333  |  5261.248666666666   |                             ['AGGREGATE_REMOVE']                            |
+|                testExpandProjectInNullable                |       300000.0       |  14870.444333333333  |                      ['PROJECT_SUB_QUERY_TO_CORRELATE']                     |
+|        testMinReuseDistinctAttrWithMixedOptionality       |  37832.59733333333   |  6576.3369999999995  | ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES_TO_JOIN', 'AGGREGATE_PROJECT_MERGE'] |
++-----------------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
+15:36:47,187 root INFO Improved 40 out of 44 queries
+15:36:47,187 root INFO Average: 7557.80490909091
+15:36:47,187 root INFO Median: 4962.533333333333
+15:36:47,187 root INFO 90th Percentile: 18079.924333333332
+15:36:47,187 root INFO 95th Percentile: 34824.41433333333
+15:36:47,187 root INFO Average Input: 106306.50350757573
+15:36:47,187 root INFO Median Input: 37907.621666666666
+15:36:47,187 root INFO 90th Percentile Input: 300000.0
+15:36:47,187 root INFO 95th Percentile Input: 300000.0
+15:36:47,187 root INFO Average Retrieval Time: 15840.90909090909
+15:36:47,187 root INFO Average Arrange Time: 56829.71490513195
+15:36:47,187 root INFO Average Rewrite Time: 58.81818181818182
+15:36:47,187 root INFO Average Total Time: 72729.44217785922

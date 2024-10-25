@@ -1,0 +1,28 @@
+15:37:07,132 root INFO Improvements:
++----------------------------------------+--------------------+--------------------+-----------------------------------------------------+
+|                Template                |       Input        |       Output       |                        Rules                        |
++----------------------------------------+--------------------+--------------------+-----------------------------------------------------+
+|        testWhereNotInCorrelated        |      300000.0      | 18402.373666666666 |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|         testWhereInCorrelated          |      300000.0      | 7274.581000000001  |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|          testWhereOrSubQuery           |      300000.0      |     36363.499      | ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE'] |
+|                testSome                |      300000.0      | 13469.597999999998 | ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE'] |
+|          testDecorrelateTwoIn          |      300000.0      | 8142.649333333334  |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|          testAggregateRemove2          | 57782.67266666666  |      5043.274      |                          []                         |
+|     testWhereAnyCorrelatedInSelect     |      300000.0      | 15334.412666666665 |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+| testPushFilterPastAggWithGroupingSets2 | 2335.8283333333334 | 2287.3046666666664 |                  ['PROJECT_REMOVE']                 |
+|         testEmptySortLimitZero         | 70.32166666666667  |       0.001        |                          []                         |
+|        testRemoveDistinctOnAgg         | 135803.70433333333 | 69531.10266666667  |                          []                         |
+|      testExpandProjectInNullable       |      300000.0      |      8926.67       |                          []                         |
++----------------------------------------+--------------------+--------------------+-----------------------------------------------------+
+15:37:07,134 root INFO Improved 11 out of 44 queries
+15:37:07,134 root INFO Average: 58332.05321212122
+15:37:07,134 root INFO Median: 20040.899666666664
+15:37:07,134 root INFO 90th Percentile: 300000.0
+15:37:07,134 root INFO 95th Percentile: 300000.0
+15:37:07,134 root INFO Average Input: 106306.50350757573
+15:37:07,134 root INFO Median Input: 37907.621666666666
+15:37:07,134 root INFO 90th Percentile Input: 300000.0
+15:37:07,134 root INFO 95th Percentile Input: 300000.0
+15:37:07,134 root INFO Average LLM Time: 3477.2727272727275
+15:37:07,134 root INFO Average Rewrite Time: 79.77272727272727
+15:37:07,134 root INFO Average Total Time: 3557.045454545455

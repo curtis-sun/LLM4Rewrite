@@ -49,8 +49,7 @@ def is_improved(t: t.Dict, idx: int, compute_latency: bool) -> bool:
             return t['input_cost'] > t['rewrites'][idx]['output_cost']
     return False
 
-def analyze(name: str) -> list[dict]:
-    template_rewrites = []
+def analyze(name: str) -> dict:
     obj = results[name]
     input_sql = obj['input_sql']
     if args.compute_latency:
@@ -78,7 +77,7 @@ def analyze(name: str) -> list[dict]:
         output_cost = float("inf")
 
     used_rules = obj['used_rules']
-    rewrite_time = obj['rewrite_time'] / 1000
+    rewrite_time = obj['rewrite_time']
     
     rewrite_obj = {'template': name, 'rewrite_time': rewrite_time, 'input_sql': input_sql, 'input_cost': input_cost, 'rewrites': [{'output_sql': output_sql, 'output_cost': output_cost, 'used_rules': used_rules}]}
     if args.compute_latency:
@@ -88,8 +87,7 @@ def analyze(name: str) -> list[dict]:
         rewrite_obj['rewrites'][0]['output_latency'] = output_latency
         if not args.large:
             rewrite_obj['rewrites'][0]['output_var'] = output_var
-    template_rewrites.append(rewrite_obj)
-    return template_rewrites
+    return rewrite_obj
 
 analyze_log_filename = f'{args.logdir}/{args.database}.log'
 logging.basicConfig(filename=analyze_log_filename,
@@ -107,6 +105,7 @@ elif 'dsb' in args.database:
 else:
     DATASET = args.database
 
+template_rewrites = []
 if DATASET == 'calcite':
     queries_path = os.path.join('..', DATASET, f'{DATASET}.jsonl')
     with open(queries_path, 'r') as fin:
@@ -114,7 +113,8 @@ if DATASET == 'calcite':
             obj = json.loads(line)
             name = sorted([x['name'] for x in obj['rewrites']])[0]
 
-            template_rewrites = analyze(name)
+            rewrite_obj = analyze(name)
+            template_rewrites.append(rewrite_obj)
 else:
     queries_path = os.path.join('..', DATASET, 'queries')
     query_templates = os.listdir(queries_path)
@@ -128,7 +128,8 @@ else:
             for j, _ in enumerate(queries):
                 name = f'{template}_{idx}' if len(queries) == 1 else f'{template}_{idx}_{j}'
 
-                template_rewrites = analyze(name)
+                rewrite_obj = analyze(name)
+                template_rewrites.append(rewrite_obj)
 
 input_attr = 'input_latency' if args.compute_latency else 'input_cost'
 output_attr = 'output_latency' if args.compute_latency else 'output_cost'
@@ -165,7 +166,7 @@ average_rewrite = sum([t['rewrite_time'] for t in template_rewrites]) / len(temp
 logging.info(f'Average Total Time: {average_rewrite}')
 
 if args.large:
-    overall_latencies = [t['rewrite_time'] * 1000 + o for t, o in zip(template_rewrites, output_latencies)]
+    overall_latencies = [t['rewrite_time'] + o for t, o in zip(template_rewrites, output_latencies)]
 
     average_overall_latency = sum(overall_latencies) / len(overall_latencies)
     logging.info(f'Average Overall: {average_overall_latency}')

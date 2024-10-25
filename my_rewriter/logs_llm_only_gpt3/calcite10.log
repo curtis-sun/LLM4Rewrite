@@ -1,0 +1,33 @@
+15:36:35,460 root INFO Improvements:
++----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
+|                Template                |        Input         |       Output       |                        Rules                        |
++----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
+|        testDecorrelateTwoExists        |       300000.0       | 49354.004666666675 |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|        testWhereNotInCorrelated        |       300000.0       | 19083.341666666664 |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|         testWhereInCorrelated          |       300000.0       | 7400.869333333333  |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|          testWhereOrSubQuery           |       300000.0       |     36048.464      | ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE'] |
+|                testSome                |       300000.0       | 13522.750999999998 | ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE'] |
+|          testDecorrelateTwoIn          |       300000.0       | 8369.969333333333  |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|          testAggregateRemove2          |  60087.46466666667   | 5235.888666666667  |                          []                         |
+|     testWhereAnyCorrelatedInSelect     |       300000.0       | 16039.423666666667 |          ['FILTER_SUB_QUERY_TO_CORRELATE']          |
+|       testReduceConstantsNegated       | 0.018666666666666665 |       0.001        |            ['FILTER_REDUCE_EXPRESSIONS']            |
+|          testAggregateMerge1           |      100209.091      |     98146.298      |                          []                         |
+|         testAggregateMergeSum0         |      52610.598       |     48142.146      |                          []                         |
+| testPushFilterPastAggWithGroupingSets2 |  2345.0606666666667  | 2276.5066666666667 |                  ['PROJECT_REMOVE']                 |
+|        testAggregateJoinRemove4        |      40088.417       |     20055.586      |                          []                         |
+|         testEmptySortLimitZero         |        73.465        |       0.001        |                          []                         |
+|        testRemoveDistinctOnAgg         |  136708.13100000002  | 69936.75466666666  |                          []                         |
+|      testExpandProjectInNullable       |       300000.0       |      8651.56       |                          []                         |
++----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
+15:36:35,461 root INFO Improved 16 out of 44 queries
+15:36:35,461 root INFO Average: 55412.36303030303
+15:36:35,461 root INFO Median: 22741.521333333334
+15:36:35,462 root INFO 90th Percentile: 230987.53266666667
+15:36:35,462 root INFO 95th Percentile: 300000.0
+15:36:35,462 root INFO Average Input: 109727.3330378788
+15:36:35,462 root INFO Median Input: 56354.64866666667
+15:36:35,462 root INFO 90th Percentile Input: 300000.0
+15:36:35,462 root INFO 95th Percentile Input: 300000.0
+15:36:35,462 root INFO Average LLM Time: 3477.2727272727275
+15:36:35,462 root INFO Average Rewrite Time: 79.77272727272727
+15:36:35,462 root INFO Average Total Time: 3557.045454545455

@@ -1,0 +1,41 @@
+15:35:37,669 root INFO Improvements:
++--------------+-------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------+
+|   Template   |    Input    |    Output   |                                                                  Rules                                                                   |
++--------------+-------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------+
+|  query023_0  |  223590.654 |  173586.38  |                  ['FILTER_SUB_QUERY_TO_CORRELATE', 'FILTER_INTO_JOIN', 'PROJECT_REDUCE_EXPRESSIONS', 'PROJECT_REMOVE']                   |
+|  query087_0  |  23752.506  |  18959.378  |                               ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS', 'PROJECT_JOIN_TRANSPOSE']                                |
+|  query069_0  |   3600000   |  25130.507  |                          ['FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE', 'SORT_PROJECT_TRANSPOSE']                          |
+| query039_0_0 |   6014.681  |   304.248   |                ['AGGREGATE_PROJECT_MERGE', 'FILTER_INTO_JOIN', 'PROJECT_REDUCE_EXPRESSIONS', 'SORT_REMOVE_CONSTANT_KEYS']                |
+| query039_0_1 |   2835.56   |   310.955   | ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REDUCE_EXPRESSIONS', 'AGGREGATE_PROJECT_MERGE', 'AGGREGATE_REDUCE_FUNCTIONS'] |
+|  query092_0  |   3600000   |   42155.8   |                                       ['FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE']                                       |
+|  query038_0  |  23920.462  |  21170.589  |                     ['FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'JOIN_TO_CORRELATE', 'INTERSECT_TO_DISTINCT']                      |
+|  query027_0  |  13433.152  |  13398.251  |                                             ['FILTER_INTO_JOIN', 'AGGREGATE_PROJECT_MERGE']                                              |
+|  query032_0  |   3600000   |  72927.244  |                                       ['FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE']                                       |
+|  query081_0  |   3600000   |  13166.536  |                             ['FILTER_INTO_JOIN', 'FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE']                             |
+|  query072_0  |  11965.306  |  10430.984  |                                 ['FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'JOIN_EXTRACT_FILTER']                                 |
+|  query040_0  |   1292.408  |   1142.494  |                             ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REDUCE_EXPRESSIONS']                              |
+|  query084_0  |   521.781   |   442.392   |                  ['FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'PROJECT_JOIN_TRANSPOSE', 'SORT_PROJECT_TRANSPOSE']                   |
+|  query080_0  |  20648.412  |  20615.431  |                                            ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS']                                             |
+|  query054_0  |   1905.893  |   1878.711  |           ['FILTER_SUB_QUERY_TO_CORRELATE', 'FILTER_REDUCE_EXPRESSIONS', 'AGGREGATE_PROJECT_MERGE', 'SORT_PROJECT_TRANSPOSE']            |
+|  query025_0  | 1478578.182 | 1473811.299 |                               ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS', 'AGGREGATE_PROJECT_MERGE']                               |
+|  query013_0  |  19995.343  |  19710.897  |                                  ['FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'JOIN_TO_CORRELATE']                                  |
+|  query094_0  |   3600000   |   1540.043  |               ['AGGREGATE_PROJECT_MERGE', 'FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_EXPAND_DISTINCT_AGGREGATES_TO_JOIN']               |
+|  query083_0  |   6138.982  |   5905.798  |                             ['FILTER_INTO_JOIN', 'FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE']                             |
++--------------+-------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------+
+15:35:37,670 root INFO Improved 19 out of 38 queries
+15:35:37,670 root INFO Average: 193985.4021842105
+15:35:37,670 root INFO Median: 18959.378
+15:35:37,670 root INFO 90th Percentile: 173586.38
+15:35:37,670 root INFO 95th Percentile: 1473811.299
+15:35:37,670 root INFO Average Input: 571653.1492368421
+15:35:37,671 root INFO Median Input: 20648.412
+15:35:37,671 root INFO 90th Percentile Input: 3600000
+15:35:37,671 root INFO 95th Percentile Input: 3600000
+15:35:37,671 root INFO Average Retrieval Time: 62552.63157894737
+15:35:37,671 root INFO Average Arrange Time: 84579.77598591855
+15:35:37,671 root INFO Average Rewrite Time: 164.94736842105263
+15:35:37,671 root INFO Average Total Time: 147297.35493328696
+15:35:37,671 root INFO Average Overall: 341282.75711749756
+15:35:37,671 root INFO Median Overall: 164611.2177810669
+15:35:37,671 root INFO 90th Percentile Overall: 388467.16878974915
+15:35:37,671 root INFO 95th Percentile Overall: 1681173.3420655364

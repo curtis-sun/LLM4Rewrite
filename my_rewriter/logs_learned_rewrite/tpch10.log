@@ -1,0 +1,21 @@
+15:33:58,652 root INFO Improvements:
++-----------+----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  Template |  Input   |       Output       |                                                                          Rules                                                                           |
++-----------+----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  query2_0 | 300000.0 | 14515.994333333334 |           ['FILTER_SUB_QUERY_TO_CORRELATE', 'SORT_PROJECT_TRANSPOSE', 'PROJECT_REDUCE_EXPRESSIONS', 'PROJECT_TO_CALC', 'JOIN_EXTRACT_FILTER']            |
+|  query2_1 | 300000.0 | 14591.285000000002 |          ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REDUCE_EXPRESSIONS', 'JOIN_EXTRACT_FILTER', 'AGGREGATE_PROJECT_MERGE', 'FILTER_INTO_JOIN']           |
+| query20_0 | 300000.0 | 17878.65266666667  |                    ['FILTER_SUB_QUERY_TO_CORRELATE', 'JOIN_EXTRACT_FILTER', 'AGGREGATE_REDUCE_FUNCTIONS', 'AGGREGATE_PROJECT_MERGE']                     |
+| query20_1 | 300000.0 |     17801.976      |                          ['PROJECT_TO_CALC', 'FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_TO_CALC', 'AGGREGATE_REDUCE_FUNCTIONS']                           |
+| query17_0 | 300000.0 | 37162.795666666665 | ['SORT_PROJECT_TRANSPOSE', 'PROJECT_TO_CALC', 'FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE', 'PROJECT_TO_CALC', 'CALC_MERGE', 'JOIN_EXTRACT_FILTER'] |
+| query17_1 | 300000.0 | 37112.62233333333  |            ['SORT_PROJECT_TRANSPOSE', 'PROJECT_TO_CALC', 'FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_REMOVE', 'PROJECT_TO_CALC', 'CALC_MERGE']             |
++-----------+----------+--------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+15:33:58,652 root INFO Improved 6 out of 44 queries
+15:33:58,653 root INFO Average: 67115.47177272727
+15:33:58,653 root INFO Median: 10600.752999999999
+15:33:58,653 root INFO 90th Percentile: 300000.0
+15:33:58,653 root INFO 95th Percentile: 300000.0
+15:33:58,653 root INFO Average Input: 104864.03254545455
+15:33:58,653 root INFO Median Input: 10600.752999999999
+15:33:58,653 root INFO 90th Percentile Input: 300000.0
+15:33:58,653 root INFO 95th Percentile Input: 300000.0
+15:33:58,653 root INFO Average Total Time: 2598.9772727272725
