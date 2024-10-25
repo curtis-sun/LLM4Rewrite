@@ -1,0 +1,9 @@
+chromadb
+llama_index
+llama-index-vector-stores-chroma
+jsonlines
+jpype1
+sqlglot
+psycopg2
+prettytable
+scipy

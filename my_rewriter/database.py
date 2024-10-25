@@ -1,5 +1,4 @@
 import psycopg2
-import pymysql
 import json
 import logging
 import typing as t
