@@ -107,3 +107,17 @@ Fourth, view experimental results:
 - `my_rewriter/`: Module for step-by-step LLM rewrite.
 - `rag/`: Module for hybrid structure-semantics evidence retrieval.
 - `tpch/`: Table schema and queries of TPC-H dataset.
+
+## Citation
+Feel free to cite us ([paper link](https://arxiv.org/pdf/2412.01661)) if you like this project.
+
+```bibtex
+@misc{sun2024llm4rewrite,
+      title={R-Bot: An LLM-based Query Rewrite System}, 
+      author={Zhaoyan Sun, Xuanhe Zhou, Guoliang Li},
+      year={2024},
+      eprint={2412.01661},
+      archivePrefix={arXiv},
+      primaryClass={cs.DB}
+}
+```
