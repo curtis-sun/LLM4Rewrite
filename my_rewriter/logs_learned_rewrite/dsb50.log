@@ -1,26 +1,22 @@
-15:36:08,188 root INFO Improvements:
-+--------------+-----------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|   Template   |   Input   |   Output  |                                                                                                   Rules                                                                                                    |
-+--------------+-----------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|  query087_0  | 23752.506 | 19112.841 |                                                                          ['AGGREGATE_PROJECT_MERGE', 'FILTER_REDUCE_EXPRESSIONS']                                                                          |
-| query039_0_0 |  6014.681 |  307.494  | ['PROJECT_REDUCE_EXPRESSIONS', 'FILTER_REDUCE_EXPRESSIONS', 'JOIN_PROJECT_BOTH_TRANSPOSE', 'SORT_REMOVE_CONSTANT_KEYS', 'SORT_PROJECT_TRANSPOSE', 'AGGREGATE_PROJECT_MERGE', 'AGGREGATE_REDUCE_FUNCTIONS'] |
-|  query038_0  | 23920.462 |  20850.85 |                                                                 ['INTERSECT_TO_DISTINCT', 'FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN']                                                                 |
-|  query072_0  | 11965.306 | 10458.032 |                                                   ['JOIN_EXTRACT_FILTER', 'PROJECT_TO_CALC', 'AGGREGATE_REDUCE_FUNCTIONS', 'FILTER_REDUCE_EXPRESSIONS']                                                    |
-|  query084_0  |  521.781  |  440.318  |                                                                    ['FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'PROJECT_TO_CALC']                                                                    |
-|  query080_0  | 20648.412 | 20386.055 |          ['UNION_MERGE', 'FILTER_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'AGGREGATE_UNION_TRANSPOSE', 'AGGREGATE_REDUCE_FUNCTIONS', 'AGGREGATE_ANY_PULL_UP_CONSTANTS', 'SORT_PROJECT_TRANSPOSE']          |
-|  query101_0  | 25562.375 | 24694.956 |                                                                          ['FILTER_REDUCE_EXPRESSIONS', 'AGGREGATE_PROJECT_MERGE']                                                                          |
-+--------------+-----------+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-15:36:08,188 root INFO Improved 7 out of 38 queries
-15:36:08,189 root INFO Average: 575856.3513947368
-15:36:08,189 root INFO Median: 20386.055
-15:36:08,189 root INFO 90th Percentile: 3600000
-15:36:08,189 root INFO 95th Percentile: 3600000
-15:36:08,189 root INFO Average Input: 571653.1492368421
-15:36:08,189 root INFO Median Input: 20648.412
-15:36:08,189 root INFO 90th Percentile Input: 3600000
-15:36:08,189 root INFO 95th Percentile Input: 3600000
-15:36:08,189 root INFO Average Total Time: 10053.921052631578
-15:36:08,189 root INFO Average Overall: 585910.2724473682
-15:36:08,189 root INFO Median Overall: 27634.85
-15:36:08,189 root INFO 90th Percentile Overall: 3606375
-15:36:08,189 root INFO 95th Percentile Overall: 3608008
+03:48:01,49 root INFO Improvements:
++--------------+----------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|   Template   |  Input   |   Output  |                                                                                                                                                                                                                                Rules                                                                                                                                                                                                                                |
++--------------+----------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| query039_0_0 | 6014.681 |  1601.968 |                             ['FILTER_INTO_JOIN', 'FILTER_PROJECT_TRANSPOSE', 'FILTER_MERGE', 'FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REDUCE_EXPRESSIONS', 'FILTER_AGGREGATE_TRANSPOSE', 'FILTER_PROJECT_TRANSPOSE', 'PROJECT_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'FILTER_MERGE', 'AGGREGATE_ANY_PULL_UP_CONSTANTS', 'AGGREGATE_REDUCE_FUNCTIONS', 'FILTER_PROJECT_TRANSPOSE', 'PROJECT_TO_CALC', 'CALC_MERGE', 'JOIN_EXTRACT_FILTER']                            |
+| query039_0_1 | 2835.56  |  2156.022 | ['FILTER_INTO_JOIN', 'FILTER_PROJECT_TRANSPOSE', 'FILTER_MERGE', 'FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REDUCE_EXPRESSIONS', 'FILTER_AGGREGATE_TRANSPOSE', 'FILTER_PROJECT_TRANSPOSE', 'PROJECT_REDUCE_EXPRESSIONS', 'FILTER_INTO_JOIN', 'FILTER_MERGE', 'SORT_REMOVE_CONSTANT_KEYS', 'SORT_PROJECT_TRANSPOSE', 'AGGREGATE_ANY_PULL_UP_CONSTANTS', 'AGGREGATE_REDUCE_FUNCTIONS', 'FILTER_PROJECT_TRANSPOSE', 'PROJECT_TO_CALC', 'CALC_MERGE', 'JOIN_EXTRACT_FILTER'] |
+|  query081_0  | 3600000  | 92130.456 |                                                                                                                                                   ['FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE', 'AGGREGATE_REDUCE_FUNCTIONS', 'AGGREGATE_JOIN_TRANSPOSE_EXTENDED', 'PROJECT_TO_CALC', 'CALC_MERGE']                                                                                                                                                  |
++--------------+----------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+03:48:01,61 root INFO Improved 3 out of 38 queries
+03:48:01,62 root INFO Average: 480157.0247631579
+03:48:01,62 root INFO Median: 23752.506
+03:48:01,62 root INFO 90th Percentile: 3600000
+03:48:01,62 root INFO 95th Percentile: 3600000
+03:48:01,62 root INFO Average Input: 571653.1492368421
+03:48:01,62 root INFO Median Input: 20648.412
+03:48:01,62 root INFO 90th Percentile Input: 3600000
+03:48:01,62 root INFO 95th Percentile Input: 3600000
+03:48:01,62 root INFO Average Total Time: 8668.315789473685
+03:48:01,62 root INFO Average Overall: 488825.3405526316
+03:48:01,63 root INFO Median Overall: 28972.506
+03:48:01,63 root INFO 90th Percentile Overall: 3605432
+03:48:01,63 root INFO 95th Percentile Overall: 3608540

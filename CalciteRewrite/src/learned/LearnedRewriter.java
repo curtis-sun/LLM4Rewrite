@@ -27,17 +27,18 @@ public class LearnedRewriter {
             return dataJson;
         }
 
+        final double costBefore = dbConn.getCost(query);
         long startTime = System.currentTimeMillis();
         RelOptFixture fixture = inputSql(query, createTables, "PostgreSQL");
         Rewriter rewriter = new Rewriter(dbConn, PostgresqlSqlDialect.DEFAULT);
         final RelNode relBefore = fixture.toRel();
-        final double costBefore = rewriter.getCostRecordFromSql(query);
-        final Node nodeBefore = new Node(query, relBefore, new ArrayList<>(), costBefore, costBefore, costBefore, null, rewriter, fixture);
+        final double costRelBefore = Rewriter.getCostRecordFromRelNode(relBefore);
+        final Node nodeBefore = new Node(query, relBefore, new ArrayList<>(), costRelBefore, costRelBefore, 0.1, null, rewriter, fixture);
         final Node bestNode = nodeBefore.UTCSEARCH(nodeBefore, budget);
         long time = System.currentTimeMillis() - startTime;
         final List<String> usedRules = collectUsedRules(bestNode);
-        double costAfter = bestNode.cost;
-        String sqlAfter = bestNode.sql;
+        final String sqlAfter = bestNode.sql;
+        final double costAfter = rewriter.getCostRecordFromSql(sqlAfter);
 
         dataJson.put("input_cost", String.format("%.4f", costBefore == Double.MAX_VALUE ? -1 : costBefore));
         dataJson.put("input_sql", query);

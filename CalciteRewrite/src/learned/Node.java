@@ -86,10 +86,10 @@ public class Node {
       }
 
       String sqlAfter = res.sql;
-      if (sqlAfter == null) {
+      if (sqlAfter == null || rewriter.getCostRecordFromSql(sqlAfter) == Double.MAX_VALUE) {
         continue;
       }
-      double newCost = rewriter.getCostRecordFromSql(sqlAfter);
+      double newCost = Rewriter.getCostRecordFromRelNode(relAfter);
       if (newCost <= this.originCost) {
         // todo rule selection
         this.addChild(sqlAfter, relAfter, newCost, usedRules);
