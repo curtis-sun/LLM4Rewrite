@@ -1,8 +1,12 @@
 # R-Bot: An LLM-based Query Rewrite System
 
 <p align="center">
-    <img src="figures/overview-v8.png" width="1000px">
+    <img src="figures/overview.png" width="1000px">
 </p>
+
+R-Bot is an *LLM-based query rewrite system*, which extracts rewrite evidences from complex documents and codes, retrieves relevant evidences based on query structure and rewrite semantics similarities, and step-by-step guides LLM in selecting and ordering rewrite rules.
+
+Key advantages include: (1) *high quality* using a specialized RAG algorithm, (2) *zero-shot robustness* with a vast pre-trained corpus and prepared evidences, (3) *executability and equivalence* ensured by the rewrite rules themselves.
 
 ## Installation
 
@@ -53,6 +57,7 @@ def init_db_config(database: str) -> dict[str, str]:
 We implement our retrieval augmented generation (RAG) method based on the [LlamaIndex](https://github.com/run-llama/llama_index) framework, and build our Q&A embedding index on the vector database [Chroma](https://github.com/chroma-core/chroma).
 ```bash
 cd rag
+unzip stackoverflow-rewrite-embed.zip
 # Build structure-semantics Q&A index.
 python3 rag_gen.py
 # (Optional) Build structure-only Q&A index.
