@@ -116,7 +116,7 @@ if DATASET == 'calcite':
 
             adjust_no_steps(query, name)
 else:
-    queries_path = os.path.join('..', DATASET, 'queries')
+    queries_path = os.path.join('..', DATASET)
     query_templates = os.listdir(queries_path)
     for template in tqdm(query_templates):
         for idx in range(2):

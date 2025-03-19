@@ -59,7 +59,7 @@ SQL Query:
 Query Rewrite Strategies:
 {strategies}'''
 
-SELECT_RULES_SYS_PROMPT =  '''You will be given a SQL query, some suggestions on how to rewrite the given SQL query, and some query rewrite rules to be selected. Your task is to select the rules that align with the provided suggestions. Follow these steps:\n\nStep 1: For each suggestion, you should evaluate all the query rewrite rules whether they can transform the given SQL query aligning with the suggestion. Note that one suggestion may require a combination of multiple rules.\n\nStep 2: Select the query rewrite rules that align with the provided query rewrite suggestions. But the given SQL query can just partially match the rule conditions, considering the combined effects of multiple rules.\n\nOutput in the following format:\nStep 1: <step 1 reasoning>\nStep 2: <step 2 reasoning>\n, then a python list of string encapsulated with ```python and ```, where each string corresponds to the name of a selected query rewrite rule.\n\nNotes:\n\n1. Ensure all the query rewrite rules are evaluated for every provided suggestion.\n2. It's acceptable to output an empty list if no rules align with the provided suggestions.'''
+SELECT_RULES_SYS_PROMPT =  '''You will be given a SQL query, some suggestions on how to rewrite the given SQL query, and some query rewrite rules to be selected. Your task is to select the rules that align with the provided suggestions. Follow these steps:\n\nStep 1: For each suggestion, you should evaluate all the query rewrite rules whether they can transform the given SQL query aligning with the suggestion. Note that one suggestion may require a combination of multiple rules.\n\nStep 2: Select the query rewrite rules that align with the provided query rewrite suggestions. But the given SQL query can just partially match the rule conditions, considering the combined effects of multiple rules.\n\nOutput in the following format:\nStep 1: <step 1 reasoning>\nStep 2: <step 2 reasoning>\n, then a python list of selected rule names encapsulated with ```python and ```, formatted as:\n```python\n["rule_name_1", "rule_name_2", ...]\n```\n\nNotes:\n\n1. Ensure all the query rewrite rules are evaluated for every provided suggestion.\n2. It's acceptable to output an empty list if no rules align with the provided suggestions.'''
 
 SELECT_RULES_USER_PROMPT = '''
 SQL Query:
@@ -108,7 +108,7 @@ ARRANGE_RULES_SYS_PROMPT = '''You will be given a SQL query, some suggestions on
 
 Output in the following format:
 <reasoning>
-, then a python list of string encapsulated with ```python and ```, where each string corresponds to the name of an arranged query rewrite rule, and the sequence of the list corresponds to the arranged order of all the provided rules.'''
+, then a python list of arranged rule names encapsulated with ```python and ```, formatted as:\n```python\n["rule_name_1", "rule_name_2", ...]\n```\n, where the sequence of the list corresponds to the arranged order of all the provided rules.'''
 
 ARRANGE_RULES_USER_PROMPT = '''
 SQL Query:
@@ -134,7 +134,7 @@ Step 2: Determine the overall sequence for all the rules, so that the new arrang
 Output in the following format:
 Step 1: <step 1 reasoning>
 Step 2: <step 2 reasoning>
-, then a python list of string encapsulated with ```python and ```, where each string corresponds to the name of a re-arranged query rewrite rule, and the sequence of the list corresponds to the re-arranged order of all the provided rules.'''
+, then a python list of re-arranged rule names encapsulated with ```python and ```, formatted as:\n```python\n["rule_name_1", "rule_name_2", ...]\n```\n, where the sequence of the list corresponds to the re-arranged order of all the provided rules.'''
 
 REARRANGE_RULES_USER_PROMPT = '''
 SQL Query:

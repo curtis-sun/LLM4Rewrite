@@ -84,7 +84,7 @@ if DATASET == 'calcite':
             out_dict = my_rewrite(query, schema, name)
             out_file.write(out_dict)
 else:
-    queries_path = os.path.join('..', DATASET, 'queries')
+    queries_path = os.path.join('..', DATASET)
     query_templates = os.listdir(queries_path)
     for template in query_templates:
         max_idx = 1 if args.large else 2

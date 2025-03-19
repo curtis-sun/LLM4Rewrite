@@ -74,7 +74,7 @@ if DATASET == 'calcite':
             logging.info(f'Input Cost: {input_cost}')
             llm_only_rewrite(query, schema, pg_args, REWRITE_ROUNDS=REWRITE_ROUNDS)
 else:
-    queries_path = os.path.join('..', DATASET, 'queries')
+    queries_path = os.path.join('..', DATASET)
     query_templates = os.listdir(queries_path)
     for template in query_templates:
         for idx in range(2):

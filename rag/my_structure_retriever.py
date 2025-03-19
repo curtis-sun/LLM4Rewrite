@@ -31,9 +31,9 @@ class MyStructureRetriever(MyQueryFusionRetriever):
             sql_templates_str = "\n".join([f'Template {i + 1}: {q}' for i, q in enumerate(sql_templates)])
             logging.info(f"Generated SQL templates:\n{sql_templates_str}")
 
-        sql_template_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_agg_embedding_from_queries([q])} for q in sql_templates]
+        sql_template_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_query_embedding(q)} for q in sql_templates]
         if len(sql_templates) == 0:
-            sql_template_with_embeddings = [{'query': '', 'embedding': [0] * 1536}]
+            sql_template_with_embeddings = [{'query': '', 'embedding': [0] * self.embed_dim}]
         synthesized_queries = []
         for t in sql_template_with_embeddings:
             embedding = [x / math.sqrt(2) for x in rules_one_hot + t['embedding']]

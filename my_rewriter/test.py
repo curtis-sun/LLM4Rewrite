@@ -34,6 +34,8 @@ elif 'tpch' in DATABASE:
     DATASET = 'tpch'
 elif 'dsb' in DATABASE:
     DATASET = 'dsb'
+elif 'hbom' in DATABASE:
+    DATASET = 'hbom'
 else:
     DATASET = DATABASE
 
@@ -54,8 +56,15 @@ if DATASET == 'calcite':
             query = obj['input_sql']
             name = sorted([x['name'] for x in obj['rewrites']])[0]
             test(name, query, schema, pg_args, model_args, docstore, LOG_DIR, RETRIEVER_TOP_K=RETRIEVER_TOP_K, CASE_BATCH=CASE_BATCH, RULE_BATCH=RULE_BATCH, REWRITE_ROUNDS=REWRITE_ROUNDS, index=args.index)
+elif DATASET == 'hbom':
+    queries_filename = os.path.join('..', DATASET, 'queries.sql')
+    content = open(queries_filename, 'r').read()
+    queries = [q.strip() + ';' for q in content.split(';') if q.strip()]
+    for j, query in enumerate(queries):
+        name = f'query{j}'
+        test(name, query, schema, pg_args, model_args, docstore, LOG_DIR, RETRIEVER_TOP_K=RETRIEVER_TOP_K, CASE_BATCH=CASE_BATCH, RULE_BATCH=RULE_BATCH, REWRITE_ROUNDS=REWRITE_ROUNDS, index=args.index)
 else:
-    queries_path = os.path.join('..', DATASET, 'queries')
+    queries_path = os.path.join('..', DATASET)
     query_templates = os.listdir(queries_path)
     for template in query_templates:
         for idx in range(2):
@@ -66,3 +75,6 @@ else:
             for j, query in enumerate(queries):
                 name = f'{template}_{idx}' if len(queries) == 1 else f'{template}_{idx}_{j}'
                 test(name, query, schema, pg_args, model_args, docstore, LOG_DIR, RETRIEVER_TOP_K=RETRIEVER_TOP_K, CASE_BATCH=CASE_BATCH, RULE_BATCH=RULE_BATCH, REWRITE_ROUNDS=REWRITE_ROUNDS, index=args.index)
+                break
+            break
+        break

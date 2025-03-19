@@ -1,6 +1,9 @@
 import chromadb
 import json
 from typing import Any, Dict, List, Optional, Sequence, Union, cast, Tuple
+import sys
+import argparse
+from tqdm import tqdm
 
 from llama_index.core.schema import (
     BaseNode,
@@ -14,9 +17,15 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import VectorStoreIndex, StorageContext, Settings
 
-Settings.embed_model = OpenAIEmbedding(
-    model="text-embedding-3-small"
-)
+sys.path.append('..')
+from my_rewriter.config import init_llms
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--model', type=str, default=None)
+args = parser.parse_args()
+
+# initialize text embedding model
+init_llms(args.model)
 
 # initialize client
 db = chromadb.PersistentClient(path="./chroma_db")
@@ -32,11 +41,11 @@ def read_summaries_with_embedding(filename: str) -> Tuple[Dict[str, List[float]]
     summary_to_embed_map = {}
     index_nodes = []
     with open(filename, 'r') as fin:
-        for line in fin.readlines():
+        for line in tqdm(fin.readlines()):
             obj = json.loads(line)
             myid = f'{obj["id"]}-{obj["answer_id"]}'
             summary = obj['summary']
-            embedding = obj['embedding']
+            embedding = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(summary)
             summary_to_embed_map[summary] = embedding
             text_node = TextNode(
                 id_ = f'{myid}-summary',

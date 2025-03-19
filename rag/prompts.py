@@ -1,3 +1,11 @@
+STACKOVERFLOW_QA_PROMPT = '''### Question: {title}
+
+{question_body}
+
+### Answer:
+
+{answer_body}'''
+
 GEN_REWRITE_SYS_PROMPT  = '''You will be given a SQL query and some SQL query rewrite rules, each with the SQL conditions to apply the rule and the SQL transformations of the rule. Your task is to explain concisely and detailedly how the rewrite rules apply to the SQL query. Follow these steps:
 
 Step 1: For each SQL query rewrite rule, use the provided rule's SQL conditions to identify the segments of the given SQL query that can be optimized by the rule. If there are no such segments, the rule does not match the SQL query. 

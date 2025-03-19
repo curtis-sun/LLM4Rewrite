@@ -116,7 +116,7 @@ if DATASET == 'calcite':
             rewrite_obj = analyze(name)
             template_rewrites.append(rewrite_obj)
 else:
-    queries_path = os.path.join('..', DATASET, 'queries')
+    queries_path = os.path.join('..', DATASET)
     query_templates = os.listdir(queries_path)
     for template in tqdm(query_templates):
         max_idx = 1 if args.large else 2

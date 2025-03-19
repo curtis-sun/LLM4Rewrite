@@ -20,10 +20,6 @@ from llama_index.llms.openai import OpenAI
 from my_rewriter.case_rules import case_rules, add_case_rules
 from rag.gen_rewrites_from_rules import calcite_rules
 
-SELECT_CASE_RULE_MODEL = OpenAI(
-    model="gpt-4-0125-preview"
-)
-
 def chat(messages: List[Dict]) -> str:
     chat_messages = [ChatMessage(**m) for m in messages]
     start = time.time()
@@ -53,7 +49,7 @@ def get_rule_sets(rule_names: t.List[str]) -> t.Dict[str, t.List[str]]:
                 if op in r:
                     group.append(r)
                     break
-        if len(group) > 1:
+        if len(group) > 0:
             rule_groups_dict[op] = group
     return rule_groups_dict
 
@@ -173,7 +169,7 @@ class MyModel:
         messages = [{'role': 'system', 'content': self.SELECT_CASE_RULE_SYS_PROMPT}, {'role': 'user', 'content': self.SELECT_CASE_RULE_USER_PROMPT.format(case=rewrite_case, rules=rules_str)}]
 
         for _ in range(2):
-            response = await achat(messages, SELECT_CASE_RULE_MODEL)
+            response = await achat(messages)
             
             prefix = '```python'
             suffix = '```'

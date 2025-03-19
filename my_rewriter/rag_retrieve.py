@@ -26,10 +26,6 @@ from rag.my_structure_retriever import MyStructureRetriever
 from rag.prompts import STACKOVERFLOW_QA_PROMPT
 from rag.gen_rewrites_from_rules import gen_rewrites_from_rules
 
-Settings.embed_model = OpenAIEmbedding(
-    model="text-embedding-3-small"
-)
-
 def init_docstore() -> SimpleDocumentStore:
     docstore = SimpleDocumentStore()
 
@@ -51,7 +47,7 @@ def init_docstore() -> SimpleDocumentStore:
     docstore.add_documents(doc_nodes)
     return docstore
 
-def rag_retrieve(query: str, schema: str, docstore: SimpleDocumentStore, RETRIEVER_TOP_K: int = 10) -> Dict:
+def rag_retrieve(query: str, schema: str, docstore: SimpleDocumentStore, embed_dim: int, RETRIEVER_TOP_K: int = 10) -> Dict:
     # initialize client
     db = chromadb.PersistentClient(path="../rag/chroma_db")
 
@@ -69,9 +65,7 @@ def rag_retrieve(query: str, schema: str, docstore: SimpleDocumentStore, RETRIEV
 
     stackoverflow_retriever = stackoverflow_index.as_retriever(similarity_top_k=RETRIEVER_TOP_K)
 
-    retriever = MyQueryFusionRetriever(docstore=docstore, qa_retriever=stackoverflow_retriever, mode=FUSION_MODES.RECIPROCAL_RANK, similarity_top_k=RETRIEVER_TOP_K, use_async=False, verbose=True)
-
-    retriever.set_schema(schema)
+    retriever = MyQueryFusionRetriever(docstore=docstore, qa_retriever=stackoverflow_retriever, schema=schema, embed_dim=embed_dim, mode=FUSION_MODES.RECIPROCAL_RANK, similarity_top_k=RETRIEVER_TOP_K, use_async=False, verbose=True)
     retriever_res = retriever.retrieve(query)
     logging.info('Retrieved Rewrite Cases: ' + str(retriever_res))
     return {"retriever_res": retriever_res, "rewrites": retriever._queries}
@@ -106,7 +100,7 @@ def rag_semantics_retrieve(query: str, schema: str, docstore: SimpleDocumentStor
     rewrites, _ = gen_rewrites_from_rules(sql=query, schema=schema, fun=achat, verbose=True)
     return {"retriever_res": node_with_scores, "rewrites": rewrites}
 
-def rag_structure_retrieve(query: str, schema: str, docstore: SimpleDocumentStore, RETRIEVER_TOP_K: int = 10) -> Dict:
+def rag_structure_retrieve(query: str, schema: str, docstore: SimpleDocumentStore, embed_dim: int, RETRIEVER_TOP_K: int = 10) -> Dict:
     # initialize client
     db = chromadb.PersistentClient(path="../rag/chroma_db")
 
@@ -124,9 +118,7 @@ def rag_structure_retrieve(query: str, schema: str, docstore: SimpleDocumentStor
 
     stackoverflow_retriever = stackoverflow_index.as_retriever(similarity_top_k=RETRIEVER_TOP_K)
 
-    retriever = MyStructureRetriever(docstore=docstore, qa_retriever=stackoverflow_retriever, mode=FUSION_MODES.RECIPROCAL_RANK, similarity_top_k=RETRIEVER_TOP_K, use_async=False, verbose=True)
-
-    retriever.set_schema(schema)
+    retriever = MyStructureRetriever(docstore=docstore, qa_retriever=stackoverflow_retriever, embed_dim=embed_dim, schema=schema, mode=FUSION_MODES.RECIPROCAL_RANK, similarity_top_k=RETRIEVER_TOP_K, use_async=False, verbose=True)
     retriever_res = retriever.retrieve(query)
     logging.info('Retrieved Rewrite Cases: ' + str(retriever_res))
     return {"retriever_res": retriever_res, "rewrites": retriever._queries}

@@ -37,6 +37,7 @@ class MyQueryFusionRetriever(BaseRetriever):
         self,
         docstore: BaseDocumentStore,
         qa_retriever: VectorIndexRetriever,
+        embed_dim: int,
         schema: Optional[str] = None,
         llm: Optional[LLMType] = None,
         mode: FUSION_MODES = FUSION_MODES.SIMPLE,
@@ -48,6 +49,7 @@ class MyQueryFusionRetriever(BaseRetriever):
         object_map: Optional[dict] = None,
     ) -> None:
         self.docstore = docstore
+        self.embed_dim = embed_dim
         self.schema = schema
         self.similarity_top_k = similarity_top_k
         self.mode = mode
@@ -65,9 +67,6 @@ class MyQueryFusionRetriever(BaseRetriever):
             objects=objects,
             verbose=verbose,
         )
-
-    def set_schema(self, schema: str) -> None:
-        self.schema = schema
 
     def _chat(self, messages: List[Dict]) -> str:
         chat_messages = [ChatMessage(**m) for m in messages]
@@ -116,10 +115,10 @@ class MyQueryFusionRetriever(BaseRetriever):
             sql_templates_str = "\n".join([f'Template {i + 1}: {q}' for i, q in enumerate(sql_templates)])
             logging.info(f"Generated SQL templates:\n{sql_templates_str}")
 
-        query_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_agg_embedding_from_queries([q])} for q in queries]
-        sql_template_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_agg_embedding_from_queries([q])} for q in sql_templates]
+        query_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_query_embedding(q)} for q in queries]
+        sql_template_with_embeddings = [{'query': q, 'embedding': Settings.embed_model.get_query_embedding(q)} for q in sql_templates]
         if len(sql_templates) == 0:
-            sql_template_with_embeddings = [{'query': '', 'embedding': [0] * 1536}]
+            sql_template_with_embeddings = [{'query': '', 'embedding': [0] * self.embed_dim}]
         synthesized_queries = []
         for q in query_with_embeddings:
             for t in sql_template_with_embeddings:

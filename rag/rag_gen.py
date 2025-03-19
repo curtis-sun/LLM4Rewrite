@@ -4,6 +4,8 @@ from typing import Any, Dict, List, Optional, Sequence, Union, cast, Tuple
 from collections import defaultdict
 import math
 import sys
+import argparse
+from tqdm import tqdm
 
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import VectorStoreIndex, StorageContext, Settings
@@ -15,14 +17,17 @@ from llama_index.core.schema import (
     RelatedNodeInfo,
     TextNode,
 )
-from llama_index.embeddings.openai import OpenAIEmbedding
 
 sys.path.append('..')
 from rag.gen_rewrites_from_rules import NL_RULES, NORMAL_RULES
+from my_rewriter.config import init_llms
 
-Settings.embed_model = OpenAIEmbedding(
-    model="text-embedding-3-small"
-)
+parser = argparse.ArgumentParser()
+parser.add_argument('--model', type=str, default=None)
+args = parser.parse_args()
+
+# initialize text embedding model
+model_args = init_llms(args.model)
 
 # initialize client
 db = chromadb.PersistentClient(path="./chroma_db")
@@ -37,9 +42,10 @@ storage_context = StorageContext.from_defaults(vector_store=vector_store)
 def read_sql_template_with_embedding(filename: str) -> Dict[str, List[float]]:
     sql_template_to_embed_map = {}
     with open(filename, 'r') as fin:
-        for line in fin.readlines():
+        for line in tqdm(fin.readlines()):
             obj = json.loads(line)
-            sql_template_to_embed_map[obj['sql_template']] = obj['embedding']
+            sql_template = obj['sql_template']
+            sql_template_to_embed_map[sql_template] = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(sql_template)
     return sql_template_to_embed_map
 
 sql_template_to_embed_map = read_sql_template_with_embedding('stackoverflow-rewrite-sql-templates-embed-query-optimization.jsonl')
@@ -88,12 +94,12 @@ def read_content_with_embedding(filename: str) -> Tuple[Dict[str, List[float]], 
     qa_cnt = 0
     sql_cnt = 0
     with open(filename, 'r') as fin:
-        for line in fin.readlines():
+        for line in tqdm(fin.readlines()):
             qa_cnt += 1
             obj = json.loads(line)
             myid = f'{obj["id"]}-{obj["answer_id"]}'
             summary = obj['summary']
-            summary_embedding = obj['embedding']
+            summary_embedding = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(summary)
             sql_structure_embedding_set = set()
             sqls = obj['question_body_sqls']
             if len(sqls) == 0:
@@ -105,7 +111,7 @@ def read_content_with_embedding(filename: str) -> Tuple[Dict[str, List[float]], 
                 if len(sql_templates) == 0:
                     sql_templates = ['']
                 for sql_template in sql_templates:
-                    sql_template_embedding = sql_template_to_embed_map.get(sql_template, [0] * 1536)
+                    sql_template_embedding = sql_template_to_embed_map.get(sql_template, [0] * model_args['EMBED_DIM'])
                     sql_structure_embedding = sql_embedding + sql_template_embedding
                     embedding = [x / math.sqrt(3) for x in summary_embedding + sql_structure_embedding]
                     if str(sql_structure_embedding) in sql_structure_embedding_set:
