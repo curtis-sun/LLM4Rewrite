@@ -1,4 +1,4 @@
-15:36:54,929 root INFO Improvements:
+14:32:22,727 root INFO Improvements:
 +------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
 |                    Template                    |        Input         |        Output        |                                    Rules                                    |
 +------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
@@ -31,16 +31,16 @@
 |          testExpandProjectInNullable           |       300000.0       |  14870.444333333333  |                      ['PROJECT_SUB_QUERY_TO_CORRELATE']                     |
 |  testMinReuseDistinctAttrWithMixedOptionality  |  37832.59733333333   |  6420.0103333333345  |                   ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES']                  |
 +------------------------------------------------+----------------------+----------------------+-----------------------------------------------------------------------------+
-15:36:54,929 root INFO Improved 28 out of 44 queries
-15:36:54,930 root INFO Average: 32435.77250757576
-15:36:54,930 root INFO Median: 6578.576666666668
-15:36:54,930 root INFO 90th Percentile: 57400.998666666674
-15:36:54,930 root INFO 95th Percentile: 300000.0
-15:36:54,930 root INFO Average Input: 106306.50350757573
-15:36:54,930 root INFO Median Input: 37907.621666666666
-15:36:54,930 root INFO 90th Percentile Input: 300000.0
-15:36:54,930 root INFO 95th Percentile Input: 300000.0
-15:36:54,930 root INFO Average Retrieval Time: 13863.636363636364
-15:36:54,930 root INFO Average Arrange Time: 46313.968295400795
-15:36:54,930 root INFO Average Rewrite Time: 49.56818181818182
-15:36:54,930 root INFO Average Total Time: 60227.17284085534
+14:32:22,759 root INFO Improved 28 out of 44 queries
+14:32:22,759 root INFO Average: 32435.77250757576
+14:32:22,759 root INFO Median: 6578.576666666668
+14:32:22,759 root INFO 90th Percentile: 57400.998666666674
+14:32:22,759 root INFO 95th Percentile: 300000.0
+14:32:22,759 root INFO Average Input: 106306.50350757576
+14:32:22,759 root INFO Median Input: 37907.621666666666
+14:32:22,759 root INFO 90th Percentile Input: 300000.0
+14:32:22,759 root INFO 95th Percentile Input: 300000.0
+14:32:22,759 root INFO Average Retrieval Time: 13863.636363636364
+14:32:22,759 root INFO Average Arrange Time: 45486.28911105069
+14:32:22,759 root INFO Average Rewrite Time: 62.0
+14:32:22,759 root INFO Average Total Time: 59411.92547468706

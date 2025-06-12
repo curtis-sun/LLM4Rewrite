@@ -23,7 +23,7 @@ from rag.gen_rewrites_from_rules import NL_RULES, NORMAL_RULES
 from my_rewriter.config import init_llms
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=str, default=None)
+parser.add_argument('--model', type=str, default='')
 args = parser.parse_args()
 
 # initialize text embedding model
@@ -45,7 +45,7 @@ def read_sql_template_with_embedding(filename: str) -> Dict[str, List[float]]:
         for line in tqdm(fin.readlines()):
             obj = json.loads(line)
             sql_template = obj['sql_template']
-            sql_template_to_embed_map[sql_template] = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(sql_template)
+            sql_template_to_embed_map[sql_template] = obj['embedding'] if args.model == '' else Settings.embed_model.get_query_embedding(sql_template)
     return sql_template_to_embed_map
 
 sql_template_to_embed_map = read_sql_template_with_embedding('stackoverflow-rewrite-sql-templates-embed-query-optimization.jsonl')
@@ -99,7 +99,7 @@ def read_content_with_embedding(filename: str) -> Tuple[Dict[str, List[float]], 
             obj = json.loads(line)
             myid = f'{obj["id"]}-{obj["answer_id"]}'
             summary = obj['summary']
-            summary_embedding = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(summary)
+            summary_embedding = obj['embedding'] if args.model == '' else Settings.embed_model.get_query_embedding(summary)
             sql_structure_embedding_set = set()
             sqls = obj['question_body_sqls']
             if len(sqls) == 0:

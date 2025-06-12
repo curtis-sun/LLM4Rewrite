@@ -1,4 +1,4 @@
-15:29:03,250 root INFO Improvements:
+15:33:42,107 root INFO Improvements:
 +-----------------------------------------------------------+----------------------+----------------------+--------------------------------------------------+
 |                          Template                         |        Input         |        Output        |                      Rules                       |
 +-----------------------------------------------------------+----------------------+----------------------+--------------------------------------------------+
@@ -34,16 +34,16 @@
 |                     testEmptyIntersect                    | 0.017333333333333336 | 0.008666666666666668 |             ['FILTER_VALUES_MERGE']              |
 |                testExpandProjectInNullable                |       300000.0       |       8651.56        |                        []                        |
 +-----------------------------------------------------------+----------------------+----------------------+--------------------------------------------------+
-15:29:03,250 root INFO Improved 31 out of 44 queries
-15:29:03,251 root INFO Average: 39127.256810606064
-15:29:03,251 root INFO Median: 14883.979666666666
-15:29:03,251 root INFO 90th Percentile: 98146.298
-15:29:03,251 root INFO 95th Percentile: 216831.12833333333
-15:29:03,251 root INFO Average Input: 109727.3330378788
-15:29:03,251 root INFO Median Input: 56354.64866666667
-15:29:03,251 root INFO 90th Percentile Input: 300000.0
-15:29:03,251 root INFO 95th Percentile Input: 300000.0
-15:29:03,251 root INFO Average Retrieval Time: 1250.0
-15:29:03,251 root INFO Average Arrange Time: 7136.363636363636
-15:29:03,251 root INFO Average Rewrite Time: 67.5
-15:29:03,251 root INFO Average Total Time: 8453.863636363636
+15:33:42,108 root INFO Improved 31 out of 44 queries
+15:33:42,108 root INFO Average: 39127.25681060606
+15:33:42,108 root INFO Median: 14883.979666666666
+15:33:42,108 root INFO 90th Percentile: 98146.298
+15:33:42,108 root INFO 95th Percentile: 216831.12833333333
+15:33:42,108 root INFO Average Input: 109727.3330378788
+15:33:42,108 root INFO Median Input: 56354.64866666667
+15:33:42,108 root INFO 90th Percentile Input: 300000.0
+15:33:42,108 root INFO 95th Percentile Input: 300000.0
+15:33:42,108 root INFO Average Retrieval Time: 1250.0
+15:33:42,108 root INFO Average Arrange Time: 7136.363636363636
+15:33:42,108 root INFO Average Rewrite Time: 76.9090909090909
+15:33:42,108 root INFO Average Total Time: 8463.272727272726

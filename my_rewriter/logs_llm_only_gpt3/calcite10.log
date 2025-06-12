@@ -1,4 +1,4 @@
-15:36:35,460 root INFO Improvements:
+14:31:50,331 root INFO Improvements:
 +----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
 |                Template                |        Input         |       Output       |                        Rules                        |
 +----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
@@ -19,15 +19,15 @@
 |        testRemoveDistinctOnAgg         |  136708.13100000002  | 69936.75466666666  |                          []                         |
 |      testExpandProjectInNullable       |       300000.0       |      8651.56       |                          []                         |
 +----------------------------------------+----------------------+--------------------+-----------------------------------------------------+
-15:36:35,461 root INFO Improved 16 out of 44 queries
-15:36:35,461 root INFO Average: 55412.36303030303
-15:36:35,461 root INFO Median: 22741.521333333334
-15:36:35,462 root INFO 90th Percentile: 230987.53266666667
-15:36:35,462 root INFO 95th Percentile: 300000.0
-15:36:35,462 root INFO Average Input: 109727.3330378788
-15:36:35,462 root INFO Median Input: 56354.64866666667
-15:36:35,462 root INFO 90th Percentile Input: 300000.0
-15:36:35,462 root INFO 95th Percentile Input: 300000.0
-15:36:35,462 root INFO Average LLM Time: 3477.2727272727275
-15:36:35,462 root INFO Average Rewrite Time: 79.77272727272727
-15:36:35,462 root INFO Average Total Time: 3557.045454545455
+14:31:50,349 root INFO Improved 16 out of 44 queries
+14:31:50,349 root INFO Average: 55412.36303030303
+14:31:50,349 root INFO Median: 22741.521333333334
+14:31:50,349 root INFO 90th Percentile: 230987.53266666667
+14:31:50,349 root INFO 95th Percentile: 300000.0
+14:31:50,349 root INFO Average Input: 109727.3330378788
+14:31:50,349 root INFO Median Input: 56354.64866666667
+14:31:50,349 root INFO 90th Percentile Input: 300000.0
+14:31:50,349 root INFO 95th Percentile Input: 300000.0
+14:31:50,350 root INFO Average LLM Time: 3477.2727272727275
+14:31:50,350 root INFO Average Rewrite Time: 86.97727272727273
+14:31:50,350 root INFO Average Total Time: 3564.25

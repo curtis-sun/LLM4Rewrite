@@ -7,7 +7,7 @@ from jpype.types import *
 # zip -d LearnedRewrite.jar META-INF/DUMMY.SF
 # zip -d LearnedRewrite.jar META-INF/DUMMY.DSA
 ''' Configure JAVA environment for JPype '''
-classpath = ['CalciteRewrite/calcite_core_main_jar/calcite-core-1.38.0-SNAPSHOT.jar', 'CalciteRewrite/calcite_core_main_jar/calcite-linq4j-1.38.0-SNAPSHOT.jar', 'CalciteRewrite/calcite_core_main_jar/postgresql-42.7.3.jar']
+classpath = []
 local_lib_dir = 'CalciteRewrite/out/artifacts/LearnedRewrite_jar'
 classpath.extend([os.path.join(local_lib_dir, jar) for jar in os.listdir(local_lib_dir)])
 

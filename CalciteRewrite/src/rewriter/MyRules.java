@@ -7,8 +7,10 @@ import org.apache.calcite.rel.logical.LogicalFilter;
 import org.apache.calcite.rel.logical.LogicalProject;
 import org.apache.calcite.rel.rules.CoreRules;
 import org.apache.calcite.rel.rules.FilterJoinRule;
+import org.apache.calcite.rel.rules.FilterProjectTransposeRule;
 import org.apache.calcite.rel.rules.ProjectFilterTransposeRule;
 import org.apache.calcite.rel.rules.PruneEmptyRules;
+import org.apache.calcite.rex.RexUtil;
 import rules.MyReduceExpressionsRule;
 
 import java.util.Arrays;
@@ -48,6 +50,12 @@ public class MyRules {
                                             .predicate(f -> f.getVariablesSet().isEmpty()).anyInputs()))
                     .as(ProjectFilterTransposeRule.Config.class)
                     .toRule();
+    public static final FilterProjectTransposeRule FILTER_PROJECT_TRANSPOSE =
+            FilterProjectTransposeRule.Config.DEFAULT.withOperandSupplier(b0 ->
+                            b0.operand(LogicalFilter.class).predicate(f -> !RexUtil.containsCorrelation(f.getCondition()) && f.getVariablesSet().isEmpty())
+                    .oneInput(b1 -> b1.operand(LogicalProject.class).anyInputs()))
+                    .as(FilterProjectTransposeRule.Config.class)
+                    .toRule();
 
     public static final Map<String, RelOptRule> NORMAL_RULES = Map.ofEntries(
             entry("AGGREGATE_ANY_PULL_UP_CONSTANTS", CoreRules.AGGREGATE_ANY_PULL_UP_CONSTANTS),
@@ -62,7 +70,7 @@ public class MyRules {
             entry("FILTER_EXPAND_IS_NOT_DISTINCT_FROM", CoreRules.FILTER_EXPAND_IS_NOT_DISTINCT_FROM),
             entry("FILTER_INTO_JOIN", FILTER_INTO_JOIN),
             entry("FILTER_MERGE", CoreRules.FILTER_MERGE),
-            entry("FILTER_PROJECT_TRANSPOSE", CoreRules.FILTER_PROJECT_TRANSPOSE),
+            entry("FILTER_PROJECT_TRANSPOSE", FILTER_PROJECT_TRANSPOSE),
             entry("FILTER_REDUCE_EXPRESSIONS", MyRules.FILTER_REDUCE_EXPRESSIONS),
             entry("FILTER_SET_OP_TRANSPOSE", CoreRules.FILTER_SET_OP_TRANSPOSE),
             entry("FILTER_TABLE_FUNCTION_TRANSPOSE", CoreRules.FILTER_TABLE_FUNCTION_TRANSPOSE),

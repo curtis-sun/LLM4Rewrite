@@ -7,7 +7,7 @@ from llama_index.llms.openai_like import OpenAILike
 CACHE_PATH = 'cache'
 CASE_RULES_PATH = 'stackoverflow-rewrite-rules-query-optimization.jsonl'
 
-def init_llms(model_type: str = None, load_model=True) -> dict[str, str]:
+def init_llms(model_type: str = '', load_model=True) -> dict[str, str]:
     if 'open' in model_type:
         if load_model:
             Settings.embed_model = HuggingFaceEmbedding(

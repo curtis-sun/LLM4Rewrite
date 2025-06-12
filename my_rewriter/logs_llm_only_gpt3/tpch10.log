@@ -1,20 +1,20 @@
-15:33:54,631 root INFO Improvements:
+13:40:11,968 root INFO Improvements:
 +-----------+----------+--------------------+-----------------------------------+
 |  Template |  Input   |       Output       |               Rules               |
 +-----------+----------+--------------------+-----------------------------------+
+| query17_1 | 300000.0 | 36586.18833333333  | ['FILTER_SUB_QUERY_TO_CORRELATE'] |
 |  query2_0 | 300000.0 | 14402.259333333335 | ['FILTER_SUB_QUERY_TO_CORRELATE'] |
 | query20_0 | 300000.0 | 17965.209666666666 | ['FILTER_SUB_QUERY_TO_CORRELATE'] |
-| query17_1 | 300000.0 | 36586.18833333333  | ['FILTER_SUB_QUERY_TO_CORRELATE'] |
 +-----------+----------+--------------------+-----------------------------------+
-15:33:54,631 root INFO Improved 3 out of 44 queries
-15:33:54,631 root INFO Average: 85976.61566666666
-15:33:54,632 root INFO Median: 10600.752999999999
-15:33:54,632 root INFO 90th Percentile: 300000.0
-15:33:54,632 root INFO 95th Percentile: 300000.0
-15:33:54,632 root INFO Average Input: 104864.03254545455
-15:33:54,632 root INFO Median Input: 10600.752999999999
-15:33:54,632 root INFO 90th Percentile Input: 300000.0
-15:33:54,632 root INFO 95th Percentile Input: 300000.0
-15:33:54,632 root INFO Average LLM Time: 3386.3636363636365
-15:33:54,632 root INFO Average Rewrite Time: 117.02272727272727
-15:33:54,632 root INFO Average Total Time: 3503.386363636364
+13:40:11,990 root INFO Improved 3 out of 44 queries
+13:40:11,990 root INFO Average: 85976.61566666666
+13:40:11,990 root INFO Median: 10600.752999999999
+13:40:11,990 root INFO 90th Percentile: 300000.0
+13:40:11,990 root INFO 95th Percentile: 300000.0
+13:40:11,990 root INFO Average Input: 104864.03254545455
+13:40:11,990 root INFO Median Input: 10600.752999999999
+13:40:11,990 root INFO 90th Percentile Input: 300000.0
+13:40:11,990 root INFO 95th Percentile Input: 300000.0
+13:40:11,990 root INFO Average LLM Time: 3386.3636363636365
+13:40:11,990 root INFO Average Rewrite Time: 84.6590909090909
+13:40:11,990 root INFO Average Total Time: 3471.0227272727275

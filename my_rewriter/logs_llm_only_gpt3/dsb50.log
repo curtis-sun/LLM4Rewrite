@@ -1,28 +1,28 @@
-15:36:04,115 root INFO Improvements:
+14:30:59,758 root INFO Improvements:
 +--------------+-----------+-----------+-------------------------------------------------------------+
 |   Template   |   Input   |   Output  |                            Rules                            |
 +--------------+-----------+-----------+-------------------------------------------------------------+
-|  query087_0  | 23752.506 | 19220.989 |                              []                             |
 | query039_0_1 |  2835.56  |  1684.987 | ['FILTER_REDUCE_EXPRESSIONS', 'PROJECT_REDUCE_EXPRESSIONS'] |
 |  query038_0  | 23920.462 | 20767.383 |                              []                             |
+|  query087_0  | 23752.506 | 19220.989 |                              []                             |
 |  query081_0  |  3600000  | 14173.233 | ['FILTER_SUB_QUERY_TO_CORRELATE', 'PROJECT_JOIN_TRANSPOSE'] |
-|  query072_0  | 11965.306 | 10366.985 |                ['FILTER_REDUCE_EXPRESSIONS']                |
 |  query080_0  | 20648.412 | 20129.785 |                              []                             |
+|  query072_0  | 11965.306 | 10366.985 |                ['FILTER_REDUCE_EXPRESSIONS']                |
 |  query101_0  | 25562.375 | 24694.956 |                ['FILTER_REDUCE_EXPRESSIONS']                |
 +--------------+-----------+-----------+-------------------------------------------------------------+
-15:36:04,115 root INFO Improved 7 out of 38 queries
-15:36:04,116 root INFO Average: 478776.1710263157
-15:36:04,116 root INFO Median: 19995.343
-15:36:04,116 root INFO 90th Percentile: 3600000
-15:36:04,116 root INFO 95th Percentile: 3600000
-15:36:04,116 root INFO Average Input: 571653.1492368421
-15:36:04,116 root INFO Median Input: 20648.412
-15:36:04,116 root INFO 90th Percentile Input: 3600000
-15:36:04,116 root INFO 95th Percentile Input: 3600000
-15:36:04,116 root INFO Average LLM Time: 5026.315789473684
-15:36:04,116 root INFO Average Rewrite Time: 118.52631578947368
-15:36:04,116 root INFO Average Total Time: 5144.8421052631575
-15:36:04,116 root INFO Average Overall: 483921.0131315789
-15:36:04,117 root INFO Median Overall: 25024.343
-15:36:04,117 root INFO 90th Percentile Overall: 3604029
-15:36:04,117 root INFO 95th Percentile Overall: 3605099
+14:30:59,785 root INFO Improved 7 out of 38 queries
+14:30:59,785 root INFO Average: 478776.1710263157
+14:30:59,785 root INFO Median: 19995.343
+14:30:59,785 root INFO 90th Percentile: 3600000
+14:30:59,785 root INFO 95th Percentile: 3600000
+14:30:59,785 root INFO Average Input: 571653.1492368422
+14:30:59,785 root INFO Median Input: 20648.412
+14:30:59,785 root INFO 90th Percentile Input: 3600000
+14:30:59,786 root INFO 95th Percentile Input: 3600000
+14:30:59,786 root INFO Average LLM Time: 5026.315789473684
+14:30:59,786 root INFO Average Rewrite Time: 84.84210526315789
+14:30:59,786 root INFO Average Total Time: 5111.157894736842
+14:30:59,786 root INFO Average Overall: 483887.32892105257
+14:30:59,786 root INFO Median Overall: 25024.343
+14:30:59,786 root INFO 90th Percentile Overall: 3604030
+14:30:59,786 root INFO 95th Percentile Overall: 3606042

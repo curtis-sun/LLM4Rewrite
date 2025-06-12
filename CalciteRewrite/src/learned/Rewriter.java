@@ -1,5 +1,8 @@
 package learned;
+import org.apache.calcite.rel.core.RelFactories;
 import org.apache.calcite.rel.rel2sql.RelToSqlConverter;
+import org.apache.calcite.sql2rel.RelDecorrelator;
+import org.apache.calcite.tools.RelBuilder;
 import rewriter.DBConn;
 import com.google.common.collect.ImmutableSet;
 import org.apache.calcite.plan.hep.HepMatchOrder;
@@ -15,6 +18,7 @@ import org.apache.calcite.rel.RelNode;
 import java.util.*;
 
 import static learned.MyRules.RULE_SEQS;
+import static rewriter.Rewriter.containsFilterWithVariables;
 import static rewriter.SqlIo.getProduct;
 import static rewriter.SqlIo.outputSql;
 
@@ -84,10 +88,14 @@ public class Rewriter {
                           CoreRules.FILTER_SUB_QUERY_TO_CORRELATE)
                   .contains(rule);
 
-          final RelNode relAfter = fixture
+          RelNode relAfter = fixture
                   .withPlanner(hepPlanner)
-                  .withLateDecorrelate(lateDecorrelate)
                   .findBest(res.rel);
+          if (lateDecorrelate && !containsFilterWithVariables(relAfter)) {
+            final RelBuilder relBuilder =
+                    RelFactories.LOGICAL_BUILDER.create(res.rel.getCluster(), null);
+            relAfter = RelDecorrelator.decorrelateQuery(relAfter, relBuilder);
+          }
           if (!relAfter.explain().equals(res.rel.explain())) {
             res.rules.add(curRuleName);
             res.rel = relAfter;

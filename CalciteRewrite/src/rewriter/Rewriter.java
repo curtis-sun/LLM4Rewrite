@@ -6,13 +6,17 @@ import org.apache.calcite.plan.hep.HepMatchOrder;
 import org.apache.calcite.plan.hep.HepPlanner;
 import org.apache.calcite.plan.hep.HepProgramBuilder;
 import org.apache.calcite.rel.RelNode;
+import org.apache.calcite.rel.RelVisitor;
 import org.apache.calcite.rel.core.RelFactories;
+import org.apache.calcite.rel.logical.LogicalFilter;
 import org.apache.calcite.rel.rel2sql.RelToSqlConverter;
 import org.apache.calcite.rel.rules.CoreRules;
 import org.apache.calcite.sql.pretty.SqlPrettyWriter;
 import org.apache.calcite.sql2rel.RelDecorrelator;
 import org.apache.calcite.test.RelOptFixture;
 import org.apache.calcite.tools.RelBuilder;
+import org.apache.calcite.util.Util;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +29,33 @@ public class Rewriter {
     public static String explain(RelNode rel) {
         return rel.explain().replace("LogicalTableScan(table=[[CATALOG, SALES, ", "LogicalTableScan(table=[[");
     }
+
+    private static boolean isFilterWithVariables(RelNode node) {
+        return node instanceof LogicalFilter && !node.getVariablesSet().isEmpty();
+    }
+
+    public static boolean containsFilterWithVariables(RelNode ancestor) {
+        if (isFilterWithVariables(ancestor)) {
+            // Short-cut common case.
+            return true;
+        }
+        try {
+            new RelVisitor() {
+                @Override public void visit(RelNode node, int ordinal,
+                                            @Nullable RelNode parent) {
+                    if (isFilterWithVariables(node)) {
+                        throw Util.FoundOne.NULL;
+                    }
+                    super.visit(node, ordinal, parent);
+                }
+                // CHECKSTYLE: IGNORE 1
+            }.go(ancestor);
+            return false;
+        } catch (Util.FoundOne e) {
+            return true;
+        }
+    }
+
     private static List<Map<String, String>> matchRules(String sql, List<String> createTables, Map<String, RelOptRule> ruleSet, String database, boolean verbose) {
         RelOptFixture fixture = inputSql(sql, createTables, database);
         List<Map<String, String>> matchRules = new ArrayList<>();
@@ -117,7 +148,7 @@ public class Rewriter {
                             .withPlanner(hepPlanner)
                             .findBest(relBefore);
                     boolean flag = true;
-                    if (lateDecorrelate) {
+                    if (lateDecorrelate && !containsFilterWithVariables(relAfter)) {
                         final RelBuilder relBuilder =
                                 RelFactories.LOGICAL_BUILDER.create(relBefore.getCluster(), null);
                         final RelNode r1 = RelDecorrelator.decorrelateQuery(relAfter, relBuilder);

@@ -1,4 +1,4 @@
-15:37:00,943 root INFO Improvements:
+14:32:37,612 root INFO Improvements:
 +------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
 |                    Template                    |        Input         |        Output        |                                 Rules                                  |
 +------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
@@ -22,15 +22,15 @@
 |          testExpandProjectInNullable           |       300000.0       |       8926.67        |                                   []                                   |
 |  testMinReuseDistinctAttrWithMixedOptionality  |  37832.59733333333   |  6542.531333333333   | ['AGGREGATE_EXPAND_DISTINCT_AGGREGATES', 'AGGREGATE_REDUCE_FUNCTIONS'] |
 +------------------------------------------------+----------------------+----------------------+------------------------------------------------------------------------+
-15:37:00,943 root INFO Improved 19 out of 44 queries
-15:37:00,943 root INFO Average: 61796.35943939393
-15:37:00,943 root INFO Median: 14152.328333333333
-15:37:00,943 root INFO 90th Percentile: 300000.0
-15:37:00,943 root INFO 95th Percentile: 300000.0
-15:37:00,943 root INFO Average Input: 106306.50350757573
-15:37:00,943 root INFO Median Input: 37907.621666666666
-15:37:00,943 root INFO 90th Percentile Input: 300000.0
-15:37:00,943 root INFO 95th Percentile Input: 300000.0
-15:37:00,943 root INFO Average LLM Time: 9318.181818181818
-15:37:00,943 root INFO Average Rewrite Time: 92.93181818181819
-15:37:00,943 root INFO Average Total Time: 9411.113636363636
+14:32:37,612 root INFO Improved 19 out of 44 queries
+14:32:37,612 root INFO Average: 61796.35943939394
+14:32:37,612 root INFO Median: 14152.328333333333
+14:32:37,612 root INFO 90th Percentile: 300000.0
+14:32:37,612 root INFO 95th Percentile: 300000.0
+14:32:37,612 root INFO Average Input: 106306.50350757576
+14:32:37,612 root INFO Median Input: 37907.621666666666
+14:32:37,612 root INFO 90th Percentile Input: 300000.0
+14:32:37,612 root INFO 95th Percentile Input: 300000.0
+14:32:37,612 root INFO Average LLM Time: 9318.181818181818
+14:32:37,612 root INFO Average Rewrite Time: 99.11363636363636
+14:32:37,612 root INFO Average Total Time: 9417.295454545454

@@ -21,7 +21,7 @@ sys.path.append('..')
 from my_rewriter.config import init_llms
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=str, default=None)
+parser.add_argument('--model', type=str, default='')
 args = parser.parse_args()
 
 # initialize text embedding model
@@ -45,7 +45,7 @@ def read_summaries_with_embedding(filename: str) -> Tuple[Dict[str, List[float]]
             obj = json.loads(line)
             myid = f'{obj["id"]}-{obj["answer_id"]}'
             summary = obj['summary']
-            embedding = obj['embedding'] if args.model is None else Settings.embed_model.get_query_embedding(summary)
+            embedding = obj['embedding'] if args.model == '' else Settings.embed_model.get_query_embedding(summary)
             summary_to_embed_map[summary] = embedding
             text_node = TextNode(
                 id_ = f'{myid}-summary',

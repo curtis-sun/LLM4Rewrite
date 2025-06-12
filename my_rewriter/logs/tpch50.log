@@ -1,32 +1,32 @@
-15:34:05,309 root INFO Improvements:
+13:40:41,183 root INFO Improvements:
 +-----------+------------+------------+----------------------------------------------------------------------------------+
 |  Template |   Input    |   Output   |                                      Rules                                       |
 +-----------+------------+------------+----------------------------------------------------------------------------------+
+|  query1_0 | 143404.899 | 142963.115 |                          ['FILTER_REDUCE_EXPRESSIONS']                           |
+| query17_0 |  3600000   | 208556.495 |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
+|  query2_0 |  3600000   | 267476.382 |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
+| query18_0 | 404213.453 | 399677.122 | ['FILTER_INTO_JOIN', 'FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE'] |
+| query20_0 |  3600000   | 127308.571 |           ['FILTER_SUB_QUERY_TO_CORRELATE', 'SORT_PROJECT_TRANSPOSE']            |
 |  query5_0 | 316162.012 | 216305.839 |                ['FILTER_INTO_JOIN', 'FILTER_REDUCE_EXPRESSIONS']                 |
 | query14_0 |  30864.27  | 29368.188  |                               ['FILTER_INTO_JOIN']                               |
-|  query1_0 | 143404.899 | 142963.115 |                          ['FILTER_REDUCE_EXPRESSIONS']                           |
-|  query2_0 |  3600000   | 267476.382 |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
 |  query7_0 |  77637.16  | 61224.358  |                               ['FILTER_INTO_JOIN']                               |
-| query20_0 |  3600000   | 127308.571 |           ['FILTER_SUB_QUERY_TO_CORRELATE', 'SORT_PROJECT_TRANSPOSE']            |
-| query18_0 | 404213.453 | 399677.122 | ['FILTER_INTO_JOIN', 'FILTER_SUB_QUERY_TO_CORRELATE', 'AGGREGATE_PROJECT_MERGE'] |
-| query16_0 | 52838.823  | 39369.793  | ['AGGREGATE_PROJECT_MERGE', 'FILTER_SUB_QUERY_TO_CORRELATE', 'FILTER_INTO_JOIN'] |
-| query17_0 |  3600000   | 208556.495 |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
 | query22_0 |  3600000   | 41139.417  |                        ['FILTER_SUB_QUERY_TO_CORRELATE']                         |
+| query16_0 | 52838.823  | 39369.793  | ['AGGREGATE_PROJECT_MERGE', 'FILTER_SUB_QUERY_TO_CORRELATE', 'FILTER_INTO_JOIN'] |
 +-----------+------------+------------+----------------------------------------------------------------------------------+
-15:34:05,310 root INFO Improved 10 out of 22 queries
-15:34:05,310 root INFO Average: 586008.9939545454
-15:34:05,310 root INFO Median: 125914.738
-15:34:05,310 root INFO 90th Percentile: 3600000
-15:34:05,310 root INFO 95th Percentile: 3600000
-15:34:05,310 root INFO Average Input: 1206918.1925454545
-15:34:05,310 root INFO Median Input: 77637.16
-15:34:05,310 root INFO 90th Percentile Input: 3600000
-15:34:05,310 root INFO 95th Percentile Input: 3600000
-15:34:05,310 root INFO Average Retrieval Time: 28727.272727272728
-15:34:05,311 root INFO Average Arrange Time: 54161.39339316975
-15:34:05,311 root INFO Average Rewrite Time: 94.27272727272727
-15:34:05,311 root INFO Average Total Time: 82982.9388477152
-15:34:05,311 root INFO Average Overall: 668991.9328022605
-15:34:05,311 root INFO Median Overall: 200311.90334786987
-15:34:05,311 root INFO 90th Percentile Overall: 3667772.1428489685
-15:34:05,311 root INFO 95th Percentile Overall: 3682414.0081539154
+13:40:41,183 root INFO Improved 10 out of 22 queries
+13:40:41,183 root INFO Average: 586008.9939545455
+13:40:41,183 root INFO Median: 125914.738
+13:40:41,183 root INFO 90th Percentile: 3600000
+13:40:41,183 root INFO 95th Percentile: 3600000
+13:40:41,183 root INFO Average Input: 1206918.1925454547
+13:40:41,183 root INFO Median Input: 77637.16
+13:40:41,183 root INFO 90th Percentile Input: 3600000
+13:40:41,183 root INFO 95th Percentile Input: 3600000
+13:40:41,183 root INFO Average Retrieval Time: 28727.272727272728
+13:40:41,183 root INFO Average Arrange Time: 53781.84314207597
+13:40:41,183 root INFO Average Rewrite Time: 86.0
+13:40:41,183 root INFO Average Total Time: 82595.1158693487
+13:40:41,184 root INFO Average Overall: 668604.1098238942
+13:40:41,184 root INFO Median Overall: 200340.83560075378
+13:40:41,184 root INFO 90th Percentile Overall: 3667772.1428489685
+13:40:41,184 root INFO 95th Percentile Overall: 3682414.0081539154
