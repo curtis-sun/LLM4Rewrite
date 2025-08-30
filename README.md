@@ -114,15 +114,17 @@ Fourth, view experimental results:
 - `tpch/`: Table schema and queries of TPC-H dataset.
 
 ## Citation
-Feel free to cite us ([paper link](https://arxiv.org/pdf/2412.01661)) if you like this project.
+Feel free to cite us ([paper link](https://www.vldb.org/pvldb/volumes/18/paper/R-Bot%3A%20An%20LLM-based%20Query%20Rewrite%20System)) if you like this project.
 
 ```bibtex
-@misc{sun2024llm4rewrite,
-      title={R-Bot: An LLM-based Query Rewrite System}, 
-      author={Zhaoyan Sun, Xuanhe Zhou, Guoliang Li},
-      year={2024},
-      eprint={2412.01661},
-      archivePrefix={arXiv},
-      primaryClass={cs.DB}
+@article{sun2025rbot,
+  title={R-Bot: An LLM-based Query Rewrite System},
+  author={Zhaoyan Sun, Xuanhe Zhou, Guoliang Li, Xiang Yu, Jianhua Feng, Yong Zhang},
+  journal={Proceedings of the VLDB Endowment},
+  volume={18},
+  number={12},
+  pages={5031--5044},
+  year={2025},
+  publisher={VLDB Endowment}
 }
 ```
